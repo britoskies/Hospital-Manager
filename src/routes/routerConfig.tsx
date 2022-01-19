@@ -17,6 +17,18 @@ const routerConfig = (guard: Function):RouteObject[] => [
                         element: <div>Dashboard Works</div>,
                     },
                     {
+                        path: "/patients",
+                        element: <div>Patients Works</div>,
+                    },
+                    {
+                        path: "/appointments",
+                        element: <div>Appointments Works</div>,
+                    },
+                    {
+                        path: "/dashboard",
+                        element: <div>Dashboard Works</div>,
+                    },
+                    {
                         path: "/",
                         element: <Navigate to="/dashboard" />,
                     },
