@@ -7,9 +7,11 @@ function SideBar({}: Props) {
   return (
     <React.Fragment>
         <div>SideBar Works!</div>
-        <Link to="/dashboard">Go to Dashboard</Link>
-        <Link to="/patients">Go to Patients</Link>
-        <Link to="/Appointments">Go to Appointments</Link>
+        <ul>
+            <li><Link to="/dashboard">Go to Dashboard</Link></li>
+            <li><Link to="/patients">Go to Patients</Link></li>
+            <li><Link to="/appointments">Go to Appointments</Link></li>
+        </ul>
     </React.Fragment>
   );
 }
