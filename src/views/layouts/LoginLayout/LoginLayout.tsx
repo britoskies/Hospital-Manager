@@ -7,7 +7,7 @@ type Props = {};
 function LoginLayout({}: Props) {
   return (
     <React.Fragment>
-        LoggedLayout Works!
+        LoginLayout Works!
         <Header />
         <div>
             <Outlet />
