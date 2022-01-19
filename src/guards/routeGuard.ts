@@ -4,7 +4,7 @@
 function routeGuard() {
     // const [user, loading, error] = Users.getAuthState()
     // return user
-    return true
+    return false
 }
 
 export default routeGuard

@@ -1,4 +1,5 @@
 // Router imports
+import { element } from "prop-types"
 import { Navigate, RouteObject } from "react-router-dom"
 
 // Layouts imports
@@ -45,6 +46,12 @@ const routerConfig = (isAuth: Function):RouteObject[] => [
             {
                 path: '/login',
                 element: !isAuth() ? <LoginLayout /> : <Navigate to="/" />,
+                children: [
+                    {
+                        index: true,
+                        element: <div>Login Works</div>
+                    }
+                ]
             },
             {
                 path: "*",
