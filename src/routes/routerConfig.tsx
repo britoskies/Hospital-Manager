@@ -1,17 +1,16 @@
 // Router imports
-import React from 'react';
-import { Navigate, RouteObject, Outlet, useParams } from "react-router-dom"
+import { Navigate, RouteObject } from "react-router-dom"
+
+// Layouts imports
 import { LoggedLayout, LoginLayout } from "../views/layouts"
 
-const LoginView = () => <div>LoginView works</div>
-
-const routerConfig = (guard: Function):RouteObject[] => [
+const routerConfig = (isAuth: Function):RouteObject[] => [
     {
         path: "/",
         children: [
             {
                 path: "/",
-                element: guard() ? <LoggedLayout /> : <Navigate to="/login" />,
+                element: isAuth() ? <LoggedLayout /> : <Navigate to="/login" />,
                 children: [
                     {
                         path: "/dashboard",
@@ -45,7 +44,7 @@ const routerConfig = (guard: Function):RouteObject[] => [
             },
             {
                 path: '/login',
-                element: !guard() ? <LoginLayout /> : <Navigate to="/" />,
+                element: !isAuth() ? <LoginLayout /> : <Navigate to="/" />,
             },
             {
                 path: "*",
