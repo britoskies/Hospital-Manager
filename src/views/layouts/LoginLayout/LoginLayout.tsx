@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router';
-import { Header, SideBar } from '../../../components';
+import { Header } from '../../../components';
 
 type Props = {};
 
