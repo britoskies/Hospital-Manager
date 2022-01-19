@@ -1,7 +1,7 @@
 // Router imports
 import { Navigate, RouteObject, Outlet } from "react-router-dom"
+import { LoggedLayout } from "../views/layouts"
 
-const LoggedLayout = () => <div>LoggedLayout works <Outlet/></div>
 const LoginView = () => <div>LoginView works</div>
 
 const routerConfig = (guard: Function):RouteObject[] => [
@@ -10,11 +10,15 @@ const routerConfig = (guard: Function):RouteObject[] => [
         children: [
             {
                 path: "/",
-                element: <LoggedLayout />,
+                element: guard() ? <LoggedLayout /> : <Navigate to="/login" />,
                 children: [
                     {
+                        path: "/dashboard",
+                        element: <div>Dashboard Works</div>,
+                    },
+                    {
                         path: "/",
-                        element: guard() ? <div>HomeView Works</div>: <Navigate to="/login" />,
+                        element: <Navigate to="/dashboard" />,
                     },
                 ]
             },
@@ -26,17 +30,6 @@ const routerConfig = (guard: Function):RouteObject[] => [
                 path: "*",
                 element: <Navigate to="/" />,
             }
-
-            
-            // {
-            //     path: "/login",
-            //     element: !guard() ? <Navigate to="/" /> : <LoginView />,
-            // },
-            // {
-            //     path: "/logout",
-            //     element: !guard() ? <Navigate to="/" /> : <p>Logging out</p>,
-            // },
-            // 
         ]
     }
 ]
