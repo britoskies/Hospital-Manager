@@ -1,6 +1,7 @@
 // Router imports
-import { Navigate, RouteObject, Outlet } from "react-router-dom"
-import { LoggedLayout } from "../views/layouts"
+import React from 'react';
+import { Navigate, RouteObject, Outlet, useParams } from "react-router-dom"
+import { LoggedLayout, LoginLayout } from "../views/layouts"
 
 const LoginView = () => <div>LoginView works</div>
 
@@ -29,6 +30,14 @@ const routerConfig = (guard: Function):RouteObject[] => [
                         element: <div>Dashboard Works</div>,
                     },
                     {
+                        path: "/patient",
+                        element: <Navigate to="/patients" />
+                    },
+                    {
+                        path: "/patient/:id",
+                        element: <div>Patient Details Works</div>,
+                    },
+                    {
                         path: "/",
                         element: <Navigate to="/dashboard" />,
                     },
@@ -36,7 +45,7 @@ const routerConfig = (guard: Function):RouteObject[] => [
             },
             {
                 path: '/login',
-                element: <LoginView />,
+                element: !guard() ? <LoginLayout /> : <Navigate to="/" />,
             },
             {
                 path: "*",
