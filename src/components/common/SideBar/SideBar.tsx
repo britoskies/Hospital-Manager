@@ -10,6 +10,7 @@ function SideBar({}: Props) {
         <ul>
             <li><Link to="/dashboard">Go to Dashboard</Link></li>
             <li><Link to="/patients">Go to Patients</Link></li>
+            <li><Link to="/patient/123">Go to a Certain Patient</Link></li>
             <li><Link to="/appointments">Go to Appointments</Link></li>
         </ul>
     </React.Fragment>
