@@ -1,5 +1,4 @@
 // Router imports
-import { element } from "prop-types"
 import { Navigate, RouteObject } from "react-router-dom"
 
 // Layouts imports
@@ -22,20 +21,16 @@ const routerConfig = (isAuth: Function):RouteObject[] => [
                         element: <div>Patients Works</div>,
                     },
                     {
-                        path: "/appointments",
-                        element: <div>Appointments Works</div>,
-                    },
-                    {
-                        path: "/dashboard",
-                        element: <div>Dashboard Works</div>,
-                    },
-                    {
                         path: "/patient",
                         element: <Navigate to="/patients" />
                     },
                     {
                         path: "/patient/:id",
                         element: <div>Patient Details Works</div>,
+                    },
+                    {
+                        path: "/appointments",
+                        element: <div>Appointments Works</div>,
                     },
                     {
                         path: "/",
