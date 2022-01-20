@@ -1,10 +1,9 @@
 // User auth model
-//import Users from "../models/users/Users";
+import UserAuth from "../models/userauth/UserAuth"
 
 function routeGuard() {
-    // const [user, loading, error] = Users.getAuthState()
-    // return user
-    return true
+    const [user, loading, error] = UserAuth.getAuthState()
+    return user
 }
 
 export default routeGuard
