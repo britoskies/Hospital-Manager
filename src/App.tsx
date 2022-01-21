@@ -1,5 +1,5 @@
 // React imports
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 // Roting imports
 import { BrowserRouter } from 'react-router-dom';
@@ -13,8 +13,11 @@ import UserAuth from './models/userauth/UserAuth'
 type Props = {};
 
 function App({ }: Props): ReactElement {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  
   const auth = () => {
-    UserAuth.authUser('victor@gmail.com', '12345678')
+    UserAuth.authUser(email, password)
   }
 
   const [value, loading, error] = UserAuth.getAuthState()
@@ -29,15 +32,15 @@ function App({ }: Props): ReactElement {
 
   return (
     <React.Fragment>
-      <input type="email" placeholder="email" />
-      <input type="password" placeholder='pass' />
+      <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder='pass' onChange={(e) => setPassword(e.target.value)} />
       <button onClick={() => auth()}>SignIn</button>
       <button onClick={() => verify()}>Verify</button>
       <button onClick={() => signout()}>SignOut</button>
       <BrowserRouter>
         <Routes/>
       </BrowserRouter>
-    </React.Fragment> 
+    </React.Fragment>
   );
 }
 
