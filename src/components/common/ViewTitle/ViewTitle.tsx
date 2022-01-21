@@ -1,8 +1,10 @@
 import React from 'react';
 
-type Props = {};
+type Props = {
+  title: string
+};
 
-function ViewTitle({}: Props) {
+function ViewTitle({title}: Props) {
   return (
     <React.Fragment>
         <div>ViewTitle Works!</div>
