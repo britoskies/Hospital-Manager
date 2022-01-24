@@ -23,7 +23,7 @@ function App({ }: Props): ReactElement {
   const [value, loading, error] = UserAuth.getAuthState()
 
   const verify = () => {
-    console.log(value);
+    console.log(value?.email);
   }
 
   const signout = () => {
