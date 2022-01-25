@@ -7,8 +7,9 @@ import Routes from './routes/Routes';
 
 // firebase imports
 import app from './services/firebase/firebase'
-
 import UserAuth from './models/userauth/UserAuth'
+
+// firestore imports
 import PatientModel from './models/patient/PatientModel';
 import ApptModel from './models/appointments/ApptModel';
 import { Timestamp } from 'firebase/firestore';
@@ -16,22 +17,6 @@ import { Timestamp } from 'firebase/firestore';
 type Props = {};
 
 function App({ }: Props): ReactElement {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  
-  const auth = () => {
-    UserAuth.authUser(email, password)
-  }
-
-  const [value, loading, error] = UserAuth.getAuthState()
-
-  const verify = () => {
-    console.log(value);
-  }
-
-  const signout = () => {
-    UserAuth.signOut()
-  }
 
   // const funcion = () => {
   //   PatientModel.create({
@@ -47,8 +32,6 @@ function App({ }: Props): ReactElement {
   //   });
   // }
 
-
-
   // function funcionTwo() { 
   //   ApptModel.create({
   //     patient_id: 2,
@@ -58,14 +41,8 @@ function App({ }: Props): ReactElement {
   //   })
   // }
 
-
   return (
     <React.Fragment>
-      <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder='pass' onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={() => auth()}>SignIn</button>
-      <button onClick={() => verify()}>Verify</button>
-      <button onClick={() => signout()}>SignOut</button>
       {/* <button onClick={() => funcionTwo()}> Update </button> */}
       <BrowserRouter>
         <Routes/>
