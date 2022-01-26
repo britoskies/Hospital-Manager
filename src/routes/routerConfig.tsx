@@ -3,6 +3,7 @@ import { Navigate, RouteObject } from "react-router-dom"
 
 // Layouts imports
 import { LoggedLayout, LoginLayout } from "../views/layouts"
+import SignInView from './../views/SignInView/SignInView';
 
 const routerConfig = (isAuth: Function):RouteObject[] => [
     {
@@ -44,7 +45,7 @@ const routerConfig = (isAuth: Function):RouteObject[] => [
                 children: [
                     {
                         index: true,
-                        element: <div>Login Works</div>
+                        element: <SignInView/>
                     }
                 ]
             },
