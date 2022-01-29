@@ -1,16 +1,15 @@
 import React from 'react';
-import ApptItems from './ApptItem';
+import ApptItem from './ApptItem';
 
 type Props = {};
 
 function ApptItemsList({ }: Props) {
     return (
-
         <div>
-            Appointment Items list Works!
-            <ApptItems />
+            Appointment Items List Works!
+            <ApptItem/>
         </div>
-    );
+    )
 }
 
 export default ApptItemsList;

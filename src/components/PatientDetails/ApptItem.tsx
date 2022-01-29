@@ -2,8 +2,8 @@ import React from 'react';
 
 type Props = {};
 
-function ApptItems({ }: Props) {
+function ApptItem({ }: Props) {
     return <div>Appointment Items Works!</div>;
 }
 
-export default ApptItems;
+export default ApptItem;
