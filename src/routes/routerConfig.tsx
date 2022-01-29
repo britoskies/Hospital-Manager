@@ -1,5 +1,6 @@
 // Router imports
 import { Navigate, RouteObject } from "react-router-dom"
+import { AppointmentsView, DashboardView, PatientDetailsView, PatientsView } from "../views";
 
 // Layouts imports
 import { LoggedLayout, LoginLayout } from "../views/layouts"
@@ -15,11 +16,11 @@ const routerConfig = (isAuth: Function):RouteObject[] => [
                 children: [
                     {
                         path: "/dashboard",
-                        element: <div>Dashboard Works</div>,
+                        element: <DashboardView />,
                     },
                     {
                         path: "/patients",
-                        element: <div>Patients Works</div>,
+                        element: <PatientsView />,
                     },
                     {
                         path: "/patient",
@@ -27,11 +28,11 @@ const routerConfig = (isAuth: Function):RouteObject[] => [
                     },
                     {
                         path: "/patient/:id",
-                        element: <div>Patient Details Works</div>,
+                        element: <PatientDetailsView />,
                     },
                     {
                         path: "/appointments",
-                        element: <div>Appointments Works</div>,
+                        element: <AppointmentsView />,
                     },
                     {
                         path: "/",
