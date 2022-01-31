@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 
 // Patients models
-import PatientModel from "../../models/patient/PatientModel";
+import Patients from "../../models/patient/PatientModel";
 
 // Material imports
 import {
@@ -13,17 +13,18 @@ import {
   DialogContentText,
   DialogTitle,
   FormControl,
+  FormLabel,
+  FormControlLabel,
   InputLabel,
   MenuItem,
   Select,
+  Switch,
   TextField,
+  FormGroup,
 } from "@mui/material";
-import MobileDatePicker from "@mui/lab/MobileDatePicker";
 
-// Context
-import { AppContext } from "../../persistence/context";
 import { Timestamp } from "firebase/firestore";
-import Appointments from "../../models/appointments/ApptModel";
+import { Label } from "@mui/icons-material";
 
 type Props = {
   open: boolean;
@@ -31,20 +32,25 @@ type Props = {
 };
 
 function AddDialog({ onClose, open }: Props) {
-  const { defaultDoctor } = useContext(AppContext);
 
-  const [date, setDate] = useState(new Date().toLocaleDateString("sv-SE"));
-  const [doctorId, setDoctorId] = useState(defaultDoctor.id);
-  const [patientId, setPatientId] = useState("");
-  const [treatment, setTreatment] = useState("");
-
-  const [patients, loading, error] = PatientModel.findAll();
+  const [active, setActive] = useState(false);
+  const [bornDate, setBornDate] = useState(new Date().toLocaleDateString("sv-SE"));
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("M");
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [ssn, setSsn] = useState("");
 
   const handleClose = () => {
-    setDate(new Date().toLocaleDateString("sv-SE"));
-    setDoctorId(defaultDoctor.id);
-    setPatientId("");
-    setTreatment("");
+    setActive(false)
+    setBornDate(new Date().toLocaleDateString("sv-SE"))
+    setEmail("")
+    setGender("M")
+    setName("")
+    setPhoneNumber("")
+    setAddress("")
+    setSsn("")
     return onClose();
   };
 
@@ -53,79 +59,122 @@ function AddDialog({ onClose, open }: Props) {
   };
 
   const handleAccept = () => {
-    if (date && doctorId && patientId && treatment) {
+    if (
+      bornDate &&
+      email &&
+      gender &&
+      name &&
+      phoneNumber &&
+      address &&
+      ssn
+    ) {
       save();
       return handleClose();
     }
   };
 
   const save = async () => {
-    const newapptDate = ~~(new Date(date).getTime() / 1000);
-    const newappt = {
-      date: new Timestamp(newapptDate, 0),
-      patient_id: patientId,
-      doctor_id: doctorId,
-      treatment: treatment,
+    const newpatientBornDate = ~~(new Date(bornDate).getTime() / 1000);
+    const newpatient = {
+      name: name,
+      email: email,
+      address: address,
+      social_number: ssn,
+      phone_number: phoneNumber,
+      born_date: new Timestamp(newpatientBornDate, 0),
+      gender: gender,
+      active_status: active,
+      diagnoses: []
     };
 
-    await Appointments.create(newappt);
+    await Patients.create(newpatient);
   };
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
-      <DialogTitle>Add New Appointment</DialogTitle>
+      <DialogTitle>Add New Patient</DialogTitle>
       <DialogContent>
         <FormControl sx={{ mb: 3, mt: 3 }} fullWidth>
           <TextField
-            id="date"
-            label="Date"
+            id="name"
+            label="Full Name"
+            fullWidth
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </FormControl>
+        <FormControl sx={{ mb: 3 }} fullWidth>
+          <TextField
+            id="email"
+            label="Email"
+            fullWidth
+            variant="outlined"
+            value={email}
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FormControl>
+        <FormControl sx={{ mb: 3 }} fullWidth>
+          <TextField
+            id="address"
+            label="Address"
+            fullWidth
+            variant="outlined"
+            value={address}
+            type="text"
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </FormControl>
+        <FormControl sx={{ mb: 3 }} fullWidth>
+          <TextField
+            id="ssn"
+            label="Social Security Number"
+            fullWidth
+            variant="outlined"
+            value={ssn}
+            placeholder="07314689"
+            type="number"
+            onChange={(e) => setSsn(e.target.value)}
+          />
+        </FormControl>
+        <FormControl sx={{ mb: 3 }} fullWidth>
+          <TextField
+            id="phoneNumber"
+            label="Phone Number"
+            fullWidth
+            variant="outlined"
+            value={phoneNumber}
+            placeholder="4155552671"
+            type="number"
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+        </FormControl>
+        <FormControl sx={{ mb: 3 }} fullWidth>
+          <InputLabel id="gender-label">Gender</InputLabel>
+          <Select
+            labelId="gender-label"
+            id="gender"
+            value={gender}
+            label="Gender"
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <MenuItem value="M">Male</MenuItem>
+            <MenuItem value="F">Female</MenuItem>
+            <MenuItem value="O">Other</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl sx={{ mb: 3 }} fullWidth>
+          <TextField
+            id="borndate"
+            label="Born Date"
             type="date"
-            defaultValue={date}
+            defaultValue={bornDate}
+            onChange={(e) => setBornDate(e.target.value)}
             InputLabelProps={{
               shrink: true,
             }}
             fullWidth
-          />
-        </FormControl>
-        <FormControl sx={{ mb: 3 }} fullWidth>
-          <InputLabel id="doctorid-label">Doctor</InputLabel>
-          <Select
-            labelId="doctorid-label"
-            id="doctorid"
-            value={doctorId}
-            label="Doctor"
-            onChange={(e) => setDoctorId(e.target.value)}
-          >
-            <MenuItem value={defaultDoctor.id}>
-              {defaultDoctor.name}
-            </MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ mb: 3 }} fullWidth>
-          <InputLabel id="patientid-label">Patient</InputLabel>
-          <Select
-            labelId="patientid-label"
-            id="patientid"
-            value={patientId}
-            label="Patient"
-            onChange={(e) => setPatientId(e.target.value)}
-          >
-            {patients &&
-              patients.docs.map((doc) => (
-                <MenuItem key={doc.id} value={doc.id}>
-                  {doc.data().name}
-                </MenuItem>
-              ))}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ mb: 3 }} fullWidth>
-          <TextField
-            id="treatment"
-            label="Treatment"
-            fullWidth
-            variant="outlined"
-            value={treatment}
-            onChange={(e) => setTreatment(e.target.value)}
           />
         </FormControl>
       </DialogContent>
@@ -133,7 +182,15 @@ function AddDialog({ onClose, open }: Props) {
         <Button onClick={handleCancel}>Cancel</Button>
         <Button 
           onClick={handleAccept}
-          disabled={!(date && doctorId && patientId && treatment)}
+          disabled={!(
+            bornDate &&
+            email &&
+            gender &&
+            name &&
+            phoneNumber &&
+            address &&
+            ssn
+          )}
         >
           Save
         </Button>
