@@ -6,6 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppContext } from './persistence/context';
 import Routes from './routes/Routes';
 
+// Styles
+import './App.css'
+
 type Props = {};
 
 function App({ }: Props): ReactElement {
