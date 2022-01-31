@@ -130,7 +130,7 @@ function SignIn({ }: Props) {
                         justifyContent: 'space-between'
                 }}
             >
-                <FormHelperText sx={{"font-size": '1rem'}} error>
+                <FormHelperText sx={{fontSize: '1rem'}} error>
                     {signinError ? "Invalid SignIn" : null}
                 </FormHelperText>
                 <a href="#">Forgot your password?</a>
