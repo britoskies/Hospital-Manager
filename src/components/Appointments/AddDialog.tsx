@@ -81,6 +81,7 @@ function AddDialog({ onClose, open }: Props) {
             label="Date"
             type="date"
             defaultValue={date}
+            onChange={(e) => setDate(e.target.value)}
             InputLabelProps={{
               shrink: true,
             }}
