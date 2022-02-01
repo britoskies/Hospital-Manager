@@ -3,18 +3,21 @@ import React, { useState } from 'react';
 
 // Mui Components
 import { 
-  Button
+  Button,
+  Box
 } from '@mui/material';
 
 // Patients Components
 import AddDialog from '../../components/Patients/AddDialog';
 import Table from '../../components/Patients/Table';
+import { ViewTitle, SearchBar } from '../../components';
 
 
 type Props = {};
 
 function PatientsView({}: Props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("")
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,15 +28,32 @@ function PatientsView({}: Props) {
   };
 
   return (
-    <React.Fragment>
+    <Box className="patients-view">
         <div>PatientsView Works!</div>
-        <Button variant="contained" onClick={handleClickOpen}>Add Patient</Button>
+        <Box 
+          sx={{
+            display: 'flex', 
+            justifyContent: 'end',
+          }}
+        >
+          <Button 
+            variant="contained" 
+            onClick={handleClickOpen}
+            sx={{
+              my: 3
+            }}
+          >Add Patient</Button>
+        </Box>
         <AddDialog
           open={open}
           onClose={handleClose}
         />
-        <Table />
-    </React.Fragment>
+        <ViewTitle 
+          title="Patients" 
+          SearchBar={() => <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} 
+        />
+        <Table searchTerm={searchTerm} />
+    </Box>
   );
 }
 

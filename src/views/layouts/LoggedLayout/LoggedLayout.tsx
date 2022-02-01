@@ -20,11 +20,11 @@ function LoggedLayout({ }: Props) {
   return (
     <React.Fragment>
         LoggedLayout Works!
-        <Header />
-        <button onClick={() => signout()}>SignOut</button>
+        <SideBar /> 
         <div>
-            <SideBar />
-            <Outlet />
+          <Header />
+          <button onClick={() => signout()}>SignOut</button>
+          <Outlet />
         </div>
     </React.Fragment>
   );
