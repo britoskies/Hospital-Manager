@@ -11,8 +11,11 @@ const columns: GridColDef[] = [
   { field: 'date', headerName: 'Date', width: 120, type: 'date' },
   { field: 'treatment', headerName: 'Treatment', width: 200 },
 ];
+type Props = {
+  searchTerm: string;
+};
 
-export default function DataTable() {
+export default function DataTable({searchTerm}: Props) {
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
 
   const [patients, ptloading, pterror] = Patients.findAll()
@@ -51,8 +54,8 @@ export default function DataTable() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={6}
+        rowsPerPageOptions={[6]}
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
         }}
