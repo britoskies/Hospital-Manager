@@ -13,7 +13,11 @@ const columns: GridColDef[] = [
   { field: 'status', headerName: 'Status', width: 100 },
 ];
 
-export default function DataTable() {
+type Props = {
+  searchTerm: string;
+};
+
+export default function DataTable({searchTerm}: Props) {
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
 
   const [patients, ptloading, pterror] = Patients.findAll()
@@ -57,8 +61,8 @@ export default function DataTable() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={6}
+        rowsPerPageOptions={[6]}
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
         }}

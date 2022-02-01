@@ -177,6 +177,14 @@ function AddDialog({ onClose, open }: Props) {
             fullWidth
           />
         </FormControl>
+        <FormGroup>
+          <FormLabel>Active Status</FormLabel>
+          <FormControlLabel
+            sx={{ mb: 3}} 
+            control={<Switch checked={active} onChange={(e) => setActive(e.target.checked)} />} 
+            label={active ? "Active" : "Inactive"} 
+          />
+        </FormGroup>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel}>Cancel</Button>
