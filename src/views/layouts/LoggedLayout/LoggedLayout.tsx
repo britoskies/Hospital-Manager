@@ -6,16 +6,15 @@ import { Outlet } from 'react-router';
 // Components
 import { Header, SideBar } from '../../../components';
 
+// Mui components
+import { Box } from '@mui/material'
+
 // Firebase imports
 import UserAuth from '../../../models/userauth/UserAuth';
 
 type Props = {};
 
 function LoggedLayout({ }: Props) {
-  
-  const signout = () => {
-    UserAuth.signOut()
-  }
 
   return (
     <React.Fragment>
@@ -23,8 +22,9 @@ function LoggedLayout({ }: Props) {
         <SideBar /> 
         <div>
           <Header />
-          <button onClick={() => signout()}>SignOut</button>
-          <Outlet />
+          <Box sx={{display: 'flex', width: "100%"}}>
+            <Outlet />
+          </Box>
         </div>
     </React.Fragment>
   );

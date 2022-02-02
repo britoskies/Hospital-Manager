@@ -27,8 +27,7 @@ function AppointmentsView({}: Props) {
   };
 
   return (
-    <Box className="appointments-view">
-      <div>AppointmentsView Works!</div>
+    <Box className="appointments-view" sx={{width: "100%", p:3}}>
       <Box
         sx={{
           display: 'flex',
@@ -39,7 +38,7 @@ function AppointmentsView({}: Props) {
           variant="contained"
           onClick={handleClickOpen}
           sx={{
-            my: 3
+            mb: 3
           }}
         >Add Appointment</Button>
       </Box>
