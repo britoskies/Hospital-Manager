@@ -28,8 +28,7 @@ function PatientsView({}: Props) {
   };
 
   return (
-    <Box className="patients-view">
-        <div>PatientsView Works!</div>
+    <Box className="patients-view" sx={{width: "100%", p:3}}>
         <Box 
           sx={{
             display: 'flex', 
@@ -40,7 +39,7 @@ function PatientsView({}: Props) {
             variant="contained" 
             onClick={handleClickOpen}
             sx={{
-              my: 3
+              mb: 3
             }}
           >Add Patient</Button>
         </Box>

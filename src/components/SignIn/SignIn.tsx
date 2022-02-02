@@ -9,6 +9,7 @@ import { TextField, Button, FormHelperText, Checkbox, FormControlLabel, Box } fr
 
 // Styles
 import './SignIn.css'
+import { useNavigate } from 'react-router-dom';
 
 type Props = {};
 
@@ -20,6 +21,8 @@ function SignIn({ }: Props) {
     const [signinError, setsigninError] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    
+    const navigate = useNavigate()
 
     const handleEmail = (e: any) => {
         setEmail(e.target.value)
@@ -55,6 +58,8 @@ function SignIn({ }: Props) {
         if (!result) {
             return setsigninError(true)
         }
+
+        return navigate('/')
     }
 
     const handleEnter = (e: any) => {
