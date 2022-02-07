@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { Paper } from '@mui/material'
 import { DataGrid, GridColDef, GridSelectionModel, GridValueGetterParams } from '@mui/x-data-grid';
 import Patients from '../../models/patient/PatientModel';
 import Appointments from '../../models/appointments/ApptModel';
@@ -6,10 +8,10 @@ import { AppContext } from '../../persistence/context';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70, hide: true },
-  { field: 'patient', headerName: 'Patient', width: 160 },
-  { field: 'doctor', headerName: 'Doctor', width: 160 },
+  { field: 'patient', headerName: 'Patient', width: 220 },
+  { field: 'doctor', headerName: 'Doctor', width: 200 },
   { field: 'date', headerName: 'Date', width: 120, type: 'date' },
-  { field: 'treatment', headerName: 'Treatment', width: 200 },
+  { field: 'treatment', headerName: 'Treatment', width: 500 },
 ];
 type Props = {
   searchTerm: string;
@@ -23,6 +25,10 @@ export default function DataTable({searchTerm}: Props) {
   const { defaultDoctor } = useContext(AppContext)
 
   const [rows, setRows] = useState<any[]>([])
+
+  const [filteredRows, setFilteredRows] = useState<any[]>(rows)
+
+  const navigate = useNavigate()
 
   const getPatientName = (patient_id: string) => {
     return patients?.docs.find(x => x.id == patient_id)?.data().name
@@ -43,16 +49,28 @@ export default function DataTable({searchTerm}: Props) {
       })
 
       setRows(tmprows)
+      setFilteredRows(tmprows)
     }
   }, [patients, appointments])
+
+  useEffect(() => {
+    let filtered = rows.filter((r: any) => {
+      return (
+        r.patient.toLowerCase().includes(searchTerm) ||
+        r.treatment.toLowerCase().includes(searchTerm) ||
+        r.doctor.toLowerCase().includes(searchTerm)
+      )
+    })
+    setFilteredRows(filtered)
+  }, [searchTerm])
 
   
   //selectionModel.map(s => console.log(rows[s-1]))
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Paper sx={{ height: "370px", width: '100%', mt: 2, mb: 3 }} elevation={0}>
       <DataGrid
-        rows={rows}
+        rows={filteredRows}
         columns={columns}
         pageSize={6}
         rowsPerPageOptions={[6]}
@@ -63,6 +81,6 @@ export default function DataTable({searchTerm}: Props) {
         //checkboxSelection
         disableSelectionOnClick
       />
-    </div>
+    </Paper>
   );
 }
