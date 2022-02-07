@@ -79,6 +79,7 @@ export default function DataTable({searchTerm}: Props) {
         rows={filteredRows}
         columns={columns}
         pageSize={6}
+        components={{NoRowsOverlay: Spinner}}
         rowsPerPageOptions={[6]}
         onRowClick={(r) => navigate(`/patient/${r.id}`)}
         onSelectionModelChange={(newSelectionModel) => {
