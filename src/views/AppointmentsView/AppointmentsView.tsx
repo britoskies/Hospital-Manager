@@ -26,8 +26,12 @@ function AppointmentsView({}: Props) {
     setOpen(false);
   };
 
+  const handleSearchTerm = (e: any) => {
+    setSearchTerm(e.target.value.toLowerCase())
+  };
+
   return (
-    <Box className="appointments-view" sx={{width: "100%", p:3}}>
+    <Box className="appointments-view" sx={{width: "100%"}}>
       <Box
         sx={{
           display: 'flex',
@@ -46,10 +50,7 @@ function AppointmentsView({}: Props) {
         open={open}
         onClose={handleClose}
       />
-      <ViewTitle 
-        title="Appointments" 
-        SearchBar={() => <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />}
-      />
+      <ViewTitle title="Appointments" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm}/>
       <Table searchTerm={searchTerm}/>
     </Box>
   );

@@ -1,16 +1,21 @@
 import React from 'react';
 
+import { SearchBar } from '../../'
+
 import { Box, Paper } from '@mui/material'
 
 type Props = {
   title: string, 
-  SearchBar?: any
+  withSearchBar?: boolean,
+  searchTerm?: string,
+  setSearchTerm: (e: any) => void
 };
 
-function ViewTitle({ title, SearchBar }: Props) {
+function ViewTitle({ title, withSearchBar, searchTerm, setSearchTerm }: Props) {
   return (
     <React.Fragment>
       <Paper
+        elevation={0}
         sx={{
           height: 80,
           background: 'linear-gradient(90deg, #1D3557 0%, rgba(9,9,121,1) 35%, #457B9D 91%)',
@@ -22,7 +27,7 @@ function ViewTitle({ title, SearchBar }: Props) {
         }}
       >
         <h3>{title}</h3>
-        {SearchBar && <SearchBar />}
+        {withSearchBar && <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />}
       </Paper>
     </React.Fragment>
   );
