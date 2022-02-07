@@ -22,7 +22,7 @@ function Header({}: Props) {
   const appTitle = "Hospital Manager"
 
   return (
-    <AppBar position="static" color="inherit">
+    <AppBar position="static" color="inherit" elevation={0}>
         
           {user && (
             <Toolbar>

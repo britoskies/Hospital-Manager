@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { Paper } from '@mui/material'
 import { DataGrid, GridColDef, GridSelectionModel, GridValueGetterParams } from '@mui/x-data-grid';
 import Patients from '../../models/patient/PatientModel';
 import Appointments from '../../models/appointments/ApptModel';
@@ -6,9 +8,9 @@ import { AppContext } from '../../persistence/context';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70, hide: true },
-  { field: 'name', headerName: 'Full Name', width: 180 },
-  { field: 'phone', headerName: 'Phone Number', width: 160 },
-  { field: 'email', headerName: 'Email', width: 180, type: 'date' },
+  { field: 'name', headerName: 'Full Name', width: 220 },
+  { field: 'phone', headerName: 'Phone Number', width: 200 },
+  { field: 'email', headerName: 'Email', width: 260, type: 'date' },
   { field: 'gender', headerName: 'Gender', width: 100 },
   { field: 'status', headerName: 'Status', width: 100 },
 ];
@@ -23,6 +25,10 @@ export default function DataTable({searchTerm}: Props) {
   const [patients, ptloading, pterror] = Patients.findAll()
 
   const [rows, setRows] = useState<any[]>([])
+
+  const [filteredRows, setFilteredRows] = useState<any[]>(rows)
+
+  const navigate = useNavigate()
 
   function formatPhoneNumber(phoneNumberString: string) {
     var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
@@ -50,19 +56,31 @@ export default function DataTable({searchTerm}: Props) {
       })
 
       setRows(tmprows)
+      setFilteredRows(tmprows)
     }
   }, [patients])
+
+  useEffect(() => {
+    let filtered = rows.filter((r: any) => {
+      return (
+        r.name.toLowerCase().includes(searchTerm) ||
+        r.email.toLowerCase().includes(searchTerm)
+      )
+    })
+    setFilteredRows(filtered)
+  }, [searchTerm])
 
   
   //selectionModel.map(s => console.log(rows[s-1]))
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Paper sx={{ height: "370px", width: '100%', mt: 2, mb: 3 }} elevation={0}>
       <DataGrid
-        rows={rows}
+        rows={filteredRows}
         columns={columns}
         pageSize={6}
         rowsPerPageOptions={[6]}
+        onRowClick={(r) => navigate(`/patient/${r.id}`)}
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
         }}
@@ -70,6 +88,6 @@ export default function DataTable({searchTerm}: Props) {
         //checkboxSelection
         disableSelectionOnClick
       />
-    </div>
+    </Paper>
   );
 }

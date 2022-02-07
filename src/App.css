@@ -10,3 +10,15 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+#root {
+  height: 100%;
+}
+
+.layout {
+  height: 100%;
+}
+
+.logged-layout {
+  background-color: #e5e5e5;
+}

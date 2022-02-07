@@ -10,7 +10,7 @@ import {
 // Patients Components
 import AddDialog from '../../components/Patients/AddDialog';
 import Table from '../../components/Patients/Table';
-import { ViewTitle, SearchBar } from '../../components';
+import { ViewTitle } from '../../components';
 
 
 type Props = {};
@@ -27,8 +27,12 @@ function PatientsView({}: Props) {
     setOpen(false);
   };
 
+  const handleSearchTerm = (e: any) => {
+    setSearchTerm(e.target.value.toLowerCase())
+  };
+
   return (
-    <Box className="patients-view" sx={{width: "100%", p:3}}>
+    <Box className="patients-view" sx={{width: "100%"}}>
         <Box 
           sx={{
             display: 'flex', 
@@ -47,10 +51,7 @@ function PatientsView({}: Props) {
           open={open}
           onClose={handleClose}
         />
-        <ViewTitle 
-          title="Patients" 
-          SearchBar={() => <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} 
-        />
+        <ViewTitle title="Patients" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm}/>
         <Table searchTerm={searchTerm} />
     </Box>
   );

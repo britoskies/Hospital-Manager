@@ -17,16 +17,17 @@ type Props = {};
 function LoggedLayout({ }: Props) {
 
   return (
-    <React.Fragment>
-        LoggedLayout Works!
-        <SideBar /> 
-        <div>
+    <Box sx={{display: 'flex', flexDirection: 'row'}} className="layout logged-layout">
+
+          <SideBar />
+
+        <Box sx={{flex: 1, mr: 3}}>
           <Header />
-          <Box sx={{display: 'flex', width: "100%"}}>
+          <Box sx={{display: 'flex', width: "100%", py: 3}}>
             <Outlet />
           </Box>
-        </div>
-    </React.Fragment>
+        </Box>
+    </Box>
   );
 }
 
