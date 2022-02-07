@@ -43,7 +43,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       // '&:focus': {
       //   width: '30ch',
       // },
-      width: '30ch'
+      width: '40ch'
     },
   },
 }));
