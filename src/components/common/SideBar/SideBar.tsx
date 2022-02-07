@@ -1,10 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Home as HomeIcon,
-  CalendarToday as CalendarIcon,
-} from "@mui/icons-material";
 import { mdiHome, mdiAccountClock, mdiCalendarBlank } from "@mdi/js";
 import { Icon } from "@mdi/react";
 
