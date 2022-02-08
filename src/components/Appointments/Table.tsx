@@ -79,7 +79,7 @@ export default function DataTable({searchTerm}: Props) {
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
         }}
-        selectionModel={selectionModel}
+        //selectionModel={selectionModel}
         //checkboxSelection
         disableSelectionOnClick
       />
