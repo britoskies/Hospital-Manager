@@ -1,15 +1,19 @@
 import React from 'react';
-import { useState } from 'react';
+
 import SignIn from './../../components/SignIn/SignIn';
 
+// Mui components
+import { Box } from '@mui/material'
+
+import './SignInView.css'
 
 type Props = {};
 
 function SignInView({ }: Props) {
   return (
-    <div className='signin'>
+    <Box className='signin-view'>
       <SignIn />
-    </div>
+    </Box>
   )
 }
 

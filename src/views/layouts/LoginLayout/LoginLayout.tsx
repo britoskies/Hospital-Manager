@@ -1,18 +1,22 @@
 import React from 'react';
+
+// Router imports
 import { Outlet } from 'react-router';
+
+// Components
 import { Header } from '../../../components';
+
+// Mui components
+import { Box } from '@mui/material'
 
 type Props = {};
 
 function LoginLayout({}: Props) {
   return (
-    <React.Fragment>
-        LoginLayout Works!
+    <Box className="layout login-layout" sx={{ px: 3 }}>
         <Header />
-        <div>
-            <Outlet />
-        </div>
-    </React.Fragment>
+        <Outlet />
+    </Box>
   );
 }
 
