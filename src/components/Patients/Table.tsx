@@ -1,19 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { Paper } from '@mui/material'
-import { DataGrid, GridColDef, GridSelectionModel, GridValueGetterParams } from '@mui/x-data-grid';
+import { Paper, Box, Typography } from '@mui/material'
+import { DataGrid, GridColDef, GridSelectionModel, GridRenderCellParams } from '@mui/x-data-grid';
 import Patients from '../../models/patient/PatientModel';
 import Appointments from '../../models/appointments/ApptModel';
 import { AppContext } from '../../persistence/context';
 import { Spinner } from '../common';
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70, hide: true },
-  { field: 'name', headerName: 'Full Name', width: 220 },
-  { field: 'phone', headerName: 'Phone Number', width: 200 },
-  { field: 'email', headerName: 'Email', width: 260, type: 'date' },
-  { field: 'gender', headerName: 'Gender', width: 100 },
-  { field: 'status', headerName: 'Status', width: 100 },
+  { field: 'id', headerName: 'ID', width: 70, hide: true, headerClassName: 'patients-table-header' },
+  { field: 'name', headerName: 'Full Name', width: 220, headerClassName: 'patients-table-header' },
+  { field: 'phone', headerName: 'Phone Number', width: 200, headerClassName: 'patients-table-header' },
+  { field: 'email', headerName: 'Email', width: 260, type: 'date', headerClassName: 'patients-table-header' },
+  { field: 'gender', headerName: 'Gender', width: 140, headerClassName: 'patients-table-header' },
+  { 
+    field: 'status', 
+    headerName: 'Status', 
+    width: 140, 
+    headerClassName: 'patients-table-header', 
+    renderCell: (params: GridRenderCellParams<string>) => (
+      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <Box 
+          sx={{
+            bgcolor: `${params.value == "Active" ? "green":"red" }`,
+            display: 'flex',
+            height: 12,
+            width: 12,
+            borderRadius: '50%',
+            mr: 1
+          }}
+        />
+        {params.value}
+      </Box>
+  )},
 ];
 
 type Props = {
@@ -75,7 +94,42 @@ export default function DataTable({searchTerm}: Props) {
   //selectionModel.map(s => console.log(rows[s-1]))
 
   return (
-    <Paper sx={{ height: "370px", width: '100%', mt: 2, mb: 3 }} elevation={0}>
+    <Paper sx={{ 
+        height: "370px", 
+        width: '100%',
+        mt: 2, 
+        mb: 3,
+        px: 2,
+        py: 0.5,
+        '& .patients-table': {
+          border: 0,
+          '& *': {
+            border: 0
+          }
+        },
+        '& .patients-table-header': {
+          bgcolor: 'white',
+          px: 4,
+        },
+        '& .patients-table-row': {
+          cursor: 'pointer',
+          my: 0.8,
+          px: 3,
+          borderRadius: '8px',
+          transition: 'all 0.1s ease-out 0s',
+          '&.patients-table-row--0': {
+            bgcolor: "#f5f5f5",
+          },
+          '&.patients-table-row--1': {
+            bgcolor: "white",
+          },
+          '&:hover': {
+            bgcolor: "#f0f0f0",
+          },
+        }
+      }} 
+      elevation={0}
+    >
       <DataGrid
         rows={filteredRows}
         columns={columns}
@@ -86,9 +140,11 @@ export default function DataTable({searchTerm}: Props) {
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
         }}
+        getRowClassName={(params) => `patients-table-row patients-table-row--${(filteredRows.findIndex(row => row.id == params.id))%2}`}
         selectionModel={selectionModel}
         //checkboxSelection
         disableSelectionOnClick
+        className="patients-table"
       />
     </Paper>
   );

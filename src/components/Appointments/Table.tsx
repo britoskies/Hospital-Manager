@@ -8,11 +8,11 @@ import { AppContext } from '../../persistence/context';
 import { Spinner } from '../common';
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70, hide: true },
-  { field: 'patient', headerName: 'Patient', width: 220 },
-  { field: 'doctor', headerName: 'Doctor', width: 200 },
-  { field: 'date', headerName: 'Date', width: 120, type: 'date' },
-  { field: 'treatment', headerName: 'Treatment', width: 500 },
+  { field: 'id', headerName: 'ID', width: 70, hide: true, headerClassName: 'appointments-table-header' },
+  { field: 'patient', headerName: 'Patient', width: 220, headerClassName: 'appointments-table-header' },
+  { field: 'doctor', headerName: 'Doctor', width: 200, headerClassName: 'appointments-table-header' },
+  { field: 'date', headerName: 'Date', width: 120, type: 'date', headerClassName: 'appointments-table-header' },
+  { field: 'treatment', headerName: 'Treatment', width: 500, headerClassName: 'appointments-table-header' },
 ];
 type Props = {
   searchTerm: string;
@@ -36,7 +36,7 @@ export default function DataTable({searchTerm}: Props) {
   }
 
   useEffect(() => {
-    if(appointments && patients){
+    if(appointments && appointments){
       let tmprows: any[] = []
 
       appointments.docs.map(doc => {
@@ -52,7 +52,7 @@ export default function DataTable({searchTerm}: Props) {
       setRows(tmprows)
       setFilteredRows(tmprows)
     }
-  }, [patients, appointments])
+  }, [appointments, appointments])
 
   useEffect(() => {
     let filtered = rows.filter((r: any) => {
@@ -69,20 +69,57 @@ export default function DataTable({searchTerm}: Props) {
   //selectionModel.map(s => console.log(rows[s-1]))
 
   return (
-    <Paper sx={{ height: "370px", width: '100%', mt: 2, mb: 3 }} elevation={0}>
-      <DataGrid
-        rows={filteredRows}
-        columns={columns}
-        pageSize={6}
-        components={{NoRowsOverlay: Spinner}}
-        rowsPerPageOptions={[6]}
-        onSelectionModelChange={(newSelectionModel) => {
-          setSelectionModel(newSelectionModel);
-        }}
-        //selectionModel={selectionModel}
-        //checkboxSelection
-        disableSelectionOnClick
-      />
-    </Paper>
+    <Paper sx={{ 
+      height: "370px", 
+      width: '100%',
+      mt: 2, 
+      mb: 3,
+      px: 2,
+      py: 0.5,
+      '& .appointments-table': {
+        border: 0,
+        '& *': {
+          border: 0
+        }
+      },
+      '& .appointments-table-header': {
+        bgcolor: 'white',
+        px: 4,
+      },
+      '& .appointments-table-row': {
+        cursor: 'default',
+        my: 0.8,
+        px: 3,
+        borderRadius: '8px',
+        transition: 'all 0.1s ease-out 0s',
+        '&.appointments-table-row--0': {
+          bgcolor: "#f5f5f5",
+        },
+        '&.appointments-table-row--1': {
+          bgcolor: "white",
+        },
+        '&:hover': {
+          bgcolor: "#f0f0f0",
+        },
+      }
+    }} 
+    elevation={0}
+  >
+    <DataGrid
+      rows={filteredRows}
+      columns={columns}
+      pageSize={6}
+      components={{NoRowsOverlay: Spinner}}
+      rowsPerPageOptions={[6]}
+      onSelectionModelChange={(newSelectionModel) => {
+        setSelectionModel(newSelectionModel);
+      }}
+      getRowClassName={(params) => `appointments-table-row appointments-table-row--${(filteredRows.findIndex(row => row.id == params.id))%2}`}
+      selectionModel={selectionModel}
+      //checkboxSelection
+      disableSelectionOnClick
+      className="appointments-table"
+    />
+  </Paper>
   );
 }
