@@ -5,6 +5,7 @@ import { DataGrid, GridColDef, GridSelectionModel, GridValueGetterParams } from 
 import Patients from '../../models/patient/PatientModel';
 import Appointments from '../../models/appointments/ApptModel';
 import { AppContext } from '../../persistence/context';
+import { Spinner } from '../common';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70, hide: true },
@@ -79,6 +80,7 @@ export default function DataTable({searchTerm}: Props) {
         rows={filteredRows}
         columns={columns}
         pageSize={6}
+        components={{NoRowsOverlay: Spinner}}
         rowsPerPageOptions={[6]}
         onRowClick={(r) => navigate(`/patient/${r.id}`)}
         onSelectionModelChange={(newSelectionModel) => {
