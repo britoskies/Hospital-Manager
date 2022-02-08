@@ -11,14 +11,27 @@ import './App.css'
 import { createTheme, ThemeProvider } from '@mui/material';
 
 
+const APP_BORDER_RADIUS = 8;
+
 // Theme
 const theme = createTheme({
   shape: {
-    borderRadius: 8
+    borderRadius: APP_BORDER_RADIUS
   },
   palette: {
     primary: {
       main: '#457B9D'
+    }
+  },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          WebkitBorderRadius: APP_BORDER_RADIUS,
+          borderTopRightRadius: 0,
+          borderTopLeftRadius: 0
+        }
+      }
     }
   }
 });
