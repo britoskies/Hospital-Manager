@@ -5,10 +5,20 @@ import React, { useEffect, useState } from 'react';
 import UserAuth from '../../models/userauth/UserAuth';
 
 // MUI Imports
-import { TextField, Button, FormHelperText, Checkbox, FormControlLabel, Box } from '@mui/material';
+import { 
+    TextField, 
+    Button, 
+    FormHelperText, 
+    Checkbox, 
+    FormControlLabel, 
+    Box, 
+    Paper,
+    Typography
+} from '@mui/material';
 
 // Styles
 import './SignIn.css'
+
 import { useNavigate } from 'react-router-dom';
 
 type Props = {};
@@ -87,11 +97,12 @@ function SignIn({ }: Props) {
     }, [password])
 
     return (
-        <div className='signin-form'>
+        <Paper className='signin-form'>
+            <Typography variant="h4" sx={{textAlign: 'center', mb:3, fontWeight: 500}}>Sign In</Typography>
             <Box className='signin-form-inputs'>
                 <TextField
-                    variant="filled" 
-                    label="Email" 
+                    variant="outlined"
+                    label="Email"
                     type={"email"}
                     onChange={(e) => handleEmail(e)}
                     className="signin-input"
@@ -102,7 +113,7 @@ function SignIn({ }: Props) {
                     fullWidth
                 />
                 <TextField 
-                    variant="filled" 
+                    variant="outlined" 
                     label="Password" 
                     type={"password"} 
                     onChange={(e) => handlePassword(e)}
@@ -138,9 +149,9 @@ function SignIn({ }: Props) {
                 <FormHelperText sx={{fontSize: '1rem'}} error>
                     {signinError ? "Invalid SignIn" : null}
                 </FormHelperText>
-                <a href="#">Forgot your password?</a>
+                <Typography component="a" sx={{mt:2}} href="#">Forgot your password?</Typography>
             </Box>
-        </div >
+        </Paper>
     );
 }
 
