@@ -18,7 +18,7 @@ function ViewTitle({ title, withSearchBar, searchTerm, setSearchTerm }: Props) {
         elevation={0}
         sx={{
           height: 80,
-          background: 'linear-gradient(90deg, #1D3557 0%, rgba(9,9,121,1) 35%, #457B9D 91%)',
+          background: 'linear-gradient(90deg, #1D3557 0%, #457B9D 91%)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
