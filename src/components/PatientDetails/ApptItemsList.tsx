@@ -1,7 +1,10 @@
-import { TabPanel } from '@mui/lab';
-import { Box, Typography } from '@mui/material';
 import React from 'react';
+import './scrollbar.css';
+
 import ApptItem from './ApptItem';
+
+// MUI imports
+import { Box} from '@mui/material';
 
 type Props = {
     apptData: [
@@ -12,10 +15,13 @@ type Props = {
 
 function ApptItemsList({ apptData }: Props) {
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '30px'}}>
+        <Box className='items-list' sx={{ display: 'flex', flexDirection: 'column', height: '420px', gap: '10px', marginTop: '30px', overflowY: 'auto' }}>
             <ApptItem apptData={apptData} ></ApptItem>
             <ApptItem apptData={apptData} ></ApptItem>
             <ApptItem apptData={apptData} ></ApptItem>
+            <ApptItem apptData={apptData} ></ApptItem>
+            <ApptItem apptData={apptData} ></ApptItem>
+            <ApptItem apptData={apptData} ></ApptItem>         
         </Box>
     );
 }
