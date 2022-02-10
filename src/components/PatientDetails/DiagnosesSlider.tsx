@@ -1,13 +1,24 @@
 import React from 'react';
 import DiagnosesItem from './DiagnosesItem';
+import Patients from './../../models/patient/PatientModel';
+import { Timestamp } from 'firebase/firestore';
 
-type Props = {};
+type Props = {
+    date: Timestamp,
+    symptoms: string,
+    diagnosis: string,
+    diagnosisDesc: string
+};
 
-function DiagnosesSlider({ }: Props) {
+function DiagnosesSlider({ date, symptoms, diagnosis, diagnosisDesc  }: Props) {
     return (
         <div>
-            Appointment Items Works!
-            <DiagnosesItem/>
+            <DiagnosesItem
+                date={date}
+                symptoms={symptoms}
+                diagnosis={diagnosis}
+                diagnosisDesc={diagnosisDesc}
+            />
         </div>
     )
 }

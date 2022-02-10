@@ -1,15 +1,22 @@
+import { TabPanel } from '@mui/lab';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
-import ApptItems from './ApptItem';
+import ApptItem from './ApptItem';
 
-type Props = {};
+type Props = {
+    apptData: [
+        doctor: string,
+        treatment: string
+    ]
+};
 
-function ApptItemsList({ }: Props) {
+function ApptItemsList({ apptData }: Props) {
     return (
-
-        <div>
-            Appointment Items list Works!
-            <ApptItems />
-        </div>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '30px'}}>
+            <ApptItem apptData={apptData} ></ApptItem>
+            <ApptItem apptData={apptData} ></ApptItem>
+            <ApptItem apptData={apptData} ></ApptItem>
+        </Box>
     );
 }
 
