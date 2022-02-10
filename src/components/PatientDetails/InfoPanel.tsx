@@ -11,7 +11,7 @@ type Props = {
     // maritualStatus: string,
     phoneNumber: string,
     gender: string,
-    // insurance: string,
+    // insurance: string | null,
     // registrationDate: string
 };
 

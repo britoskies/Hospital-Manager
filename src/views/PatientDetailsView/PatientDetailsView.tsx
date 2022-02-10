@@ -1,18 +1,27 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+
+// Components imports
 import ProfilePanel from './../../components/PatientDetails/ProfilePanel';
-import Patients from './../../models/patient/PatientModel';
 import InfoPanel from './../../components/PatientDetails/InfoPanel';
 import NotesPanel from './../../components/PatientDetails/NotesPanel';
 import DiagnosesPanel from './../../components/PatientDetails/DiagnosesPanel';
-import { Box, Grid } from '@mui/material';
 import ViewTitle from './../../components/common/ViewTitle/ViewTitle';
 import ApptPanel from './../../components/PatientDetails/ApptPanel';
+
+// Model imports
+import Patients from './../../models/patient/PatientModel';
+
+// MUI imports
+import { Box, Grid } from '@mui/material';
 
 type Props = {};
 
 function PatientDetailsView({ }: Props) {
 
-  const [patient, ptLoading, ptError] = Patients.findById("RATfJrCiemTKZYhZPIR0");
+  let { id } = useParams()
+
+  const [patient, ptLoading, ptError] = Patients.findById(`${id}`);
 
   return (
     <React.Fragment>
@@ -28,7 +37,7 @@ function PatientDetailsView({ }: Props) {
               // maritalStatus={patient?.data().marital_status}
               phoneNumber={patient?.data()?.phone_number}
               gender={patient?.data()?.gender}
-            // insurance={patient?.data()?.insurance}
+            //insurance={patient?.data()?.diagnoses[0]}
             // registrationDate={patient?.data().}
             />
           </Grid>
