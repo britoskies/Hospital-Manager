@@ -1,6 +1,6 @@
 import React from 'react';
-import ApptItemsList from './ApptItemsList';
-import ApptItem from './../Dashboard/ApptItem';
+import ApptItemsList from '../ApptPanel/ApptItemsList';
+import ApptItem from '../../Dashboard/ApptItem';
 
 // MUI imports
 import { Box, Tab, Tabs } from '@mui/material';

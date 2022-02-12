@@ -2,12 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 // Components imports
-import ProfilePanel from './../../components/PatientDetails/ProfilePanel';
-import InfoPanel from './../../components/PatientDetails/InfoPanel';
-import NotesPanel from './../../components/PatientDetails/NotesPanel';
-import DiagnosesPanel from './../../components/PatientDetails/DiagnosesPanel';
+import ProfilePanel from '../../components/PatientDetails/ProfilePanel/ProfilePanel';
+import InfoPanel from '../../components/PatientDetails/DetailsPanel/InfoPanel';
+import NotesPanel from '../../components/PatientDetails/NotesPanel/NotesPanel';
+import DiagnosesPanel from '../../components/PatientDetails/DiagnosesPanel/DiagnosesPanel';
 import ViewTitle from './../../components/common/ViewTitle/ViewTitle';
-import ApptPanel from './../../components/PatientDetails/ApptPanel';
+import ApptPanel from '../../components/PatientDetails/ApptPanel/ApptPanel';
 
 // Model imports
 import Patients from './../../models/patient/PatientModel';

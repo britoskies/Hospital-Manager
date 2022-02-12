@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components and Views imports
 import DiagnosesSlider from './DiagnosesItem';
-import Patients from './../../models/patient/PatientModel';
+import Patients from '../../../models/patient/PatientModel';
 
 // Mui imports
 import { Paper, Box, Typography, IconButton, Menu, MenuItem } from '@mui/material';

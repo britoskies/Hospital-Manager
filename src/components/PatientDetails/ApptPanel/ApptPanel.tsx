@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Components imports
 import ApptItemsList from './ApptItemsList'
-import ApptTimeSlider from './ApptTimeSlider'
+import ApptTimeSlider from '../DiagnosesPanel/ApptTimeSlider'
 
 // MUI imports
 import { Box, Typography, Paper } from '@mui/material';
+import AddDialog from './AddDialog';
 
 type Props = {};
 
 function ApptPanel({ }: Props) {
 
     const [value, setValue] = React.useState<number>(0);
+    const [open, setOpen] = React.useState<boolean>(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Box>
@@ -24,7 +34,7 @@ function ApptPanel({ }: Props) {
                     <ApptTimeSlider value={value} setValue={setValue} />
                     
                     <Box sx={{ position: 'relative', top: 13}}>
-                        <button style={{
+                        <button onClick={handleClickOpen} style={{
                             background: '#F5F5F5',
                             color: '#717171',
                             fontSize: '20px',
@@ -34,6 +44,7 @@ function ApptPanel({ }: Props) {
                             height: '32px',
                             cursor: 'pointer'
                         }}> + </button>
+                        <AddDialog open={open} onClose={handleClose}/>
                     </Box>
                 </Box>
                 <Box className='bottom-container'>
