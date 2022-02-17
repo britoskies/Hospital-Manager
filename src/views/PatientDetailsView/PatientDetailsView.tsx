@@ -11,6 +11,7 @@ import ApptPanel from '../../components/PatientDetails/ApptPanel/ApptPanel';
 
 // Model imports
 import Patients from './../../models/patient/PatientModel';
+import Appointments from '../../models/appointments/ApptModel';
 
 // MUI imports
 import { Box, Grid } from '@mui/material';
@@ -19,9 +20,19 @@ type Props = {};
 
 function PatientDetailsView({ }: Props) {
 
-  let { id } = useParams()
-
+  let { id } = useParams();
+  
+  // Patient data
   const [patient, ptLoading, ptError] = Patients.findById(`${id}`);
+  const patientName = patient?.data()?.name;
+  const bornDate = new Date(patient?.data()?.born_date.seconds * 1000).toLocaleDateString();
+  const ssn = patient?.data()?.social_number;
+  const address = patient?.data()?.address;
+  const phoneNumber = patient?.data()?.phone_number;
+  const gender = patient?.data()?.gender;
+
+  // Appointment data
+  const [appointments, apptLoading, apptError] = Appointments.findByPatientId(`${id}`);
 
   return (
     <React.Fragment>
@@ -29,20 +40,20 @@ function PatientDetailsView({ }: Props) {
         <ViewTitle title='Patient Details' setSearchTerm={() => ""} />
         <Grid container spacing={3}>
           <Grid item xs={3}>
-            <ProfilePanel name={patient?.data()?.name} />
+            <ProfilePanel name={patientName} />
             <InfoPanel
-              bornDate={new Date(patient?.data()?.born_date.seconds * 1000).toLocaleDateString()}
-              ssn={patient?.data()?.social_number}
-              address={patient?.data()?.address}
+              bornDate={bornDate}
+              ssn={ssn}
+              address={address}
               // maritalStatus={patient?.data().marital_status}
-              phoneNumber={patient?.data()?.phone_number}
-              gender={patient?.data()?.gender}
+              phoneNumber={phoneNumber}
+              gender={gender}
             //insurance={patient?.data()?.diagnoses[0]}
             // registrationDate={patient?.data().}
             />
           </Grid>
           <Grid item xs>
-            <ApptPanel/>
+            <ApptPanel apptData={appointments}/>
           </Grid>
           <Grid item xs>
             <DiagnosesPanel />

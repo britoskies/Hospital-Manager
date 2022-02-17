@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+// Firebase imports
+import { DocumentData, QuerySnapshot } from 'firebase/firestore';
 
 // Components imports
 import ApptItemsList from './ApptItemsList'
@@ -8,9 +12,11 @@ import ApptTimeSlider from '../DiagnosesPanel/ApptTimeSlider'
 import { Box, Typography, Paper } from '@mui/material';
 import AddDialog from './AddDialog';
 
-type Props = {};
+type Props = {
+    apptData: QuerySnapshot<DocumentData> | undefined;
+};
 
-function ApptPanel({ }: Props) {
+function ApptPanel({ apptData }: Props) {
 
     const [value, setValue] = React.useState<number>(0);
     const [open, setOpen] = React.useState<boolean>(false);
@@ -25,7 +31,7 @@ function ApptPanel({ }: Props) {
 
     return (
         <Box>
-            <Paper sx={{ width: 'auto',height: 'auto',p: '24px', marginTop: '16px' }}>
+            <Paper sx={{ width: 'auto', height: 'auto', p: '24px', marginTop: '16px' }}>
                 <Box className='top-container' sx={{ display: 'flex', flexDirection: 'row' }}>
                     <Typography sx={{ display: 'flex', alignItems: 'center',color: '#333',fontWeight: 500, fontSize: '20px' }}>
                         Appointments
@@ -48,9 +54,8 @@ function ApptPanel({ }: Props) {
                     </Box>
                 </Box>
                 <Box className='bottom-container'>
-                    {/* si value es igual a 0, render itemlist, si 1 igual al 2 */}
-                    {value === 0 && (<ApptItemsList apptData={["Sasha Hill", "Crown Prep"]} />)}
-                    {value === 1 && (<ApptItemsList apptData={["Albert Villegas", "Wash Mouth"]} />)}
+                    {value === 0 && (<ApptItemsList apptData={apptData} />)}
+                    {value === 1 && (<ApptItemsList apptData={apptData} />)}
                 </Box>
             </Paper>
         </Box >

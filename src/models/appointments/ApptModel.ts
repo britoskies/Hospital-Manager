@@ -9,7 +9,8 @@ import {
     doc,
     deleteDoc,
     addDoc,
-    updateDoc
+    updateDoc,
+    where
 } from "firebase/firestore";
 
 
@@ -27,6 +28,12 @@ const Appointments = {
         return useDocument<DocumentData | iAppointments>(
             doc(this.db, 'appointments', apptId)
         );
+    },
+    
+    findByPatientId(patientId: string) { 
+        return useCollection<DocumentData | iAppointments>(
+            query(collection(this.db, "appointments"), where("patient_id", "==", patientId))
+        );     
     },
 
     async deleteById(apptId: string) {
