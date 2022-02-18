@@ -14,10 +14,13 @@ type Props = {
 };
 
 function ApptItemsList({ apptData }: Props) {
+
+    let key = 0;
+
     return (
         <Box className='items-list' sx={{ display: 'flex', flexDirection: 'column', height: '420px', gap: '10px', marginTop: '30px', overflowY: 'auto' }}>
             {
-                apptData?.docs.map(doc => <ApptItem apptData={doc.data()} ></ApptItem>)
+                apptData?.docs.map(doc => <ApptItem key={key++} apptData={doc.data()} ></ApptItem>)
             }
         </Box>
     );
