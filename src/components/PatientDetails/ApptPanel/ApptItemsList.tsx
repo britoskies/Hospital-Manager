@@ -10,17 +10,25 @@ import { DocumentData, QuerySnapshot } from 'firebase/firestore';
 import { Box } from '@mui/material';
 
 type Props = {
-    apptData: QuerySnapshot<DocumentData> | undefined;
+    pastAppts?: any[] | undefined;
+    dueAppts?: any[] | undefined;
 };
 
-function ApptItemsList({ apptData }: Props) {
+function ApptItemsList({ pastAppts, dueAppts }: Props) {
 
     let key = 0;
 
     return (
         <Box className='items-list' sx={{ display: 'flex', flexDirection: 'column', height: '420px', gap: '10px', marginTop: '30px', overflowY: 'auto' }}>
             {
-                apptData?.docs.map(doc => <ApptItem key={key++} apptData={doc.data()} ></ApptItem>)
+               pastAppts && pastAppts?.map(appt => { 
+                   return <ApptItem key={key++} apptData={appt} />
+                })
+            }
+            {
+                dueAppts && dueAppts?.map(appt => {
+                    return <ApptItem key={key++} apptData={appt} />
+                })
             }
         </Box>
     );

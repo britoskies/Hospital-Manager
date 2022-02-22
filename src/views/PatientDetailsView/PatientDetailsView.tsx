@@ -33,6 +33,9 @@ function PatientDetailsView({ }: Props) {
 
   // Appointment data
   const [appointments, apptLoading, apptError] = Appointments.findByPatientId(`${id}`);
+  const appts = appointments?.docs.map(doc => doc.data());
+  const pastAppts = appts?.filter(appt => new Date(appt?.date.seconds * 1000).getTime() < Date.now());
+  const dueAppts = appts?.filter(appt => new Date(appt?.date.seconds * 1000).getTime() >= Date.now());
 
   return (
     <React.Fragment>
@@ -53,7 +56,7 @@ function PatientDetailsView({ }: Props) {
             />
           </Grid>
           <Grid item xs>
-            <ApptPanel apptData={appointments}/>
+            <ApptPanel pastAppts={pastAppts} dueAppts={dueAppts}/>
           </Grid>
           <Grid item xs>
             <DiagnosesPanel />
