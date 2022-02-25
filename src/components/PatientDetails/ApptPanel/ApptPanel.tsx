@@ -19,11 +19,12 @@ import { Icon } from "@mdi/react";
 import { mdiCalendarMonth, mdiClockTimeFour } from '@mdi/js';
 
 type Props = {
-    apptData: QuerySnapshot<DocumentData> | undefined;
+    pastAppts: any[] | undefined;
+    dueAppts: any[] | undefined;
 };
 
-function ApptPanel({ apptData }: Props) {
-
+function ApptPanel({ pastAppts, dueAppts }: Props) {
+    
     // Dialog handling
     const [open, setOpen] = React.useState<boolean>(false);
 
@@ -121,10 +122,10 @@ function ApptPanel({ apptData }: Props) {
 
                     <Box className='bottom-container'>
                         <TabPanel value={0}>
-                            <ApptItemsList apptData={apptData} />
+                            <ApptItemsList dueAppts={dueAppts}/>
                         </TabPanel>
                         <TabPanel value={1}>
-                            <ApptItemsList apptData={apptData} />
+                            <ApptItemsList pastAppts={pastAppts}/>
                         </TabPanel>
                     </Box>
                 </TabsUnstyled>
