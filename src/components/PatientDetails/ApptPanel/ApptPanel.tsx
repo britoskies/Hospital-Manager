@@ -36,11 +36,6 @@ function ApptPanel({ pastAppts, dueAppts }: Props) {
         setOpen(false);
     };
 
-    //let dateInMs = apptData?.docs.map(doc => new Date(doc.data().date.seconds * 1000).getTime());
-    //let lastAppointments = dateInMs?.filter(date => date < Date.now());
-    //let currentAppointments = dateInMs?.filter(date => date >= Date.now());
-    //console.log(currentAppointments);
-
     // Styles
 
     const Tab = styled(TabUnstyled)`
@@ -49,11 +44,12 @@ function ApptPanel({ pastAppts, dueAppts }: Props) {
         background-color: transparent;
         width: 100%;
         padding: 7px 8px;
-        margin: 3px 3px;
+        margin: 3px;
         border: none;
         border-radius: 8px;
         display: flex;
         justify-content: center;
+        transition: .25s ease-in;
 
         &:focus {
             outline: none;

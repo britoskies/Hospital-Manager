@@ -5,14 +5,43 @@ import { useState, useEffect } from 'react';
 import { Avatar, IconButton, Menu, MenuItem, Paper, Typography, Box } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+// Model imports
+import Appointments from '../../../models/appointments/ApptModel';
+import { DocumentData, QuerySnapshot } from 'firebase/firestore';
+import { iAppointments } from '../../../models/appointments/ApptSchema';
+
 type Props = {
-    name: string
+    name: string;
+    appts: any[] | undefined
+    id: string | undefined;
 };
 
-function ProfilePanel({ name }: Props) {
+function ProfilePanel({ name, appts, id }: Props) {
 
     // Optional
     const [apptDate, setApptDate] = useState<string>("Jan, 17th 2:00PM");
+    const [appointments, apptLoading, apptError] = Appointments.findByPatientId(`${id}`);
+
+    // sortear appts
+    // selecciobar el de fecha menor
+    // acceder al appt.date
+
+    const dates = appts?.map(appt => new Date(appt.date.seconds * 1000).toLocaleDateString());
+    let nextAppt: any = dates?.slice(0, 1).toLocaleString();
+
+    const generateMonth = () => {
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let month = months[new Date(nextAppt)?.getMonth()];
+        if (month == undefined) return ''
+        return `${month}`
+    }
+
+    const generateDayNumber = () => {
+        let dayNum = new Date(nextAppt)?.getDate();
+        if (isNaN(dayNum)) return ''
+        return `${dayNum}`
+    }
+
 
     // Menu icon config
     const options = [
@@ -94,7 +123,11 @@ function ProfilePanel({ name }: Props) {
                 Next Appointment
             </Typography>
             <Typography sx={{ color: '#333', fontWeight: 'bold', fontSize: '16px' }}>
-                {apptDate}
+                {
+                    (generateMonth() || generateDayNumber())
+                        ? `${generateMonth()}, ${generateDayNumber()}th 2:00PM`
+                        : 'N/A'
+                }
             </Typography>
         </Paper>
     );
