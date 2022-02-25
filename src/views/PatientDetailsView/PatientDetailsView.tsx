@@ -31,7 +31,7 @@ function PatientDetailsView({ }: Props) {
   const phoneNumber = patient?.data()?.phone_number;
   const gender = patient?.data()?.gender;
 
-  // Appointment data
+  // Appointments data
   const [appointments, apptLoading, apptError] = Appointments.findByPatientId(`${id}`);
   const appts = appointments?.docs.map(doc => doc.data());
   const pastAppts = appts?.filter(appt => new Date(appt?.date.seconds * 1000).getTime() < Date.now());
@@ -43,16 +43,13 @@ function PatientDetailsView({ }: Props) {
         <ViewTitle title='Patient Details' setSearchTerm={() => ""} />
         <Grid container spacing={3}>
           <Grid item xs={3}>
-            <ProfilePanel name={patientName} />
+            <ProfilePanel name={patientName} appts={dueAppts} id={id}/>
             <InfoPanel
               bornDate={bornDate}
               ssn={ssn}
               address={address}
-              // maritalStatus={patient?.data().marital_status}
               phoneNumber={phoneNumber}
               gender={gender}
-            //insurance={patient?.data()?.diagnoses[0]}
-            // registrationDate={patient?.data().}
             />
           </Grid>
           <Grid item xs>

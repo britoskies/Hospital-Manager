@@ -1,10 +1,10 @@
 import React from 'react';
 import './scrollbar.css';
 
+// Component imports
 import ApptItem from './ApptItem';
+import { ApptAlert } from '../..';
 
-// Firebase imports
-import { DocumentData, QuerySnapshot } from 'firebase/firestore';
 
 // MUI imports
 import { Box } from '@mui/material';
@@ -29,6 +29,17 @@ function ApptItemsList({ pastAppts, dueAppts }: Props) {
                 dueAppts && dueAppts?.map(appt => {
                     return <ApptItem key={key++} apptData={appt} />
                 })
+                
+            }
+            {
+                (pastAppts?.length == 0)
+                    ? <ApptAlert text='Empty appointments history' />
+                    : ''
+            }
+            {
+                (dueAppts?.length == 0)
+                    ? <ApptAlert text='No appointments scheduled' />
+                    : ''
             }
         </Box>
     );
