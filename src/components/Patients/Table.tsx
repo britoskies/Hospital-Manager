@@ -90,15 +90,11 @@ export default function DataTable({searchTerm}: Props) {
     setFilteredRows(filtered)
   }, [searchTerm])
 
-  
-  //selectionModel.map(s => console.log(rows[s-1]))
-
   return (
     <Paper sx={{ 
-        height: "370px", 
+        height: "475px", 
         width: '100%',
         mt: 2, 
-        mb: 3,
         px: 2,
         py: 0.5,
         '& .patients-table': {
