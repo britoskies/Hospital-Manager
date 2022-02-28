@@ -70,10 +70,9 @@ export default function DataTable({searchTerm}: Props) {
 
   return (
     <Paper sx={{ 
-      height: "370px", 
+      height: "475px", 
       width: '100%',
       mt: 2, 
-      mb: 3,
       px: 2,
       py: 0.5,
       '& .appointments-table': {

@@ -5,11 +5,6 @@ import { useState, useEffect } from 'react';
 import { Avatar, IconButton, Menu, MenuItem, Paper, Typography, Box } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-// Model imports
-import Appointments from '../../../models/appointments/ApptModel';
-import { DocumentData, QuerySnapshot } from 'firebase/firestore';
-import { iAppointments } from '../../../models/appointments/ApptSchema';
-
 type Props = {
     name: string;
     appts: any[] | undefined
@@ -18,16 +13,9 @@ type Props = {
 
 function ProfilePanel({ name, appts, id }: Props) {
 
-    // Optional
-    const [apptDate, setApptDate] = useState<string>("Jan, 17th 2:00PM");
-    const [appointments, apptLoading, apptError] = Appointments.findByPatientId(`${id}`);
-
-    // sortear appts
-    // selecciobar el de fecha menor
-    // acceder al appt.date
-
     const dates = appts?.map(appt => new Date(appt.date.seconds * 1000).toLocaleDateString());
-    let nextAppt: any = dates?.slice(0, 1).toLocaleString();
+    let sortedDates = dates?.sort();
+    let nextAppt: any = sortedDates?.slice(0, 1).toLocaleString();
 
     const generateMonth = () => {
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
