@@ -5,7 +5,7 @@ import DiagnosesSlider from './DiagnosesItem';
 import Patients from '../../../models/patient/PatientModel';
 
 // Mui imports
-import { Paper, Box, Typography, IconButton, Menu, MenuItem } from '@mui/material';
+import { Paper, Typography, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 type Props = {};
@@ -35,7 +35,7 @@ function DiagnosesPanel({ }: Props) {
 
 
     return (
-        <Paper sx={{
+        <Paper elevation={0} sx={{
             width: 'auto',
             height: 'auto',
             p: '24px',

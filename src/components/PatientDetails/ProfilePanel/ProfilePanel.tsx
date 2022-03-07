@@ -11,7 +11,7 @@ type Props = {
     id: string | undefined;
 };
 
-function ProfilePanel({ name, appts, id }: Props) {
+function ProfilePanel({ name, appts }: Props) {
 
     const dates = appts?.map(appt => new Date(appt.date.seconds * 1000).toLocaleDateString());
     let sortedDates = dates?.sort();
@@ -49,7 +49,7 @@ function ProfilePanel({ name, appts, id }: Props) {
     };
 
     return (
-        <Paper sx={{
+        <Paper elevation={0} sx={{
             width: 'auto',
             height: 'auto',
             display: 'flex',

@@ -2,9 +2,11 @@ import React from 'react';
 import { IconButton, Menu, MenuItem, Paper, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-type Props = {};
+type Props = {
+    notes: string
+};
 
-function NotesPanel({ }: Props) {
+function NotesPanel({ notes }: Props) {
 
     // Menu icon config
     const options = [
@@ -23,11 +25,10 @@ function NotesPanel({ }: Props) {
     };
 
     return (
-        <Paper sx={{
+        <Paper elevation={0} sx={{
             width: 'auto',
             height: 'auto',
-            p: '24px',
-            margin: '16px 0px 16px 0px'
+            p: '24px'
         }}>
             <Typography sx={{
                 display: 'flex',
@@ -71,9 +72,7 @@ function NotesPanel({ }: Props) {
                 </Menu>
             </Typography>
             <Typography sx={{ color: '#333', fontWeight: 400, fontSize: '14px', marginTop: '10px' }}>
-                High risk patient. Food allergies to coconut,
-                peanut, egg and dust. Topical allergy to latex. Lactose intolerant.
-                Heart transplant. Metallic fiber on the left knee.
+                {(notes) ? notes : 'There are no records on this patient\'s documents'}
             </Typography>
         </Paper>
     );

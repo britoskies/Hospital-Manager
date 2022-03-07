@@ -11,36 +11,37 @@ import { mdiArrowRightThin } from '@mdi/js';
 import { Icon } from '@mdi/react';
 
 // Model imports
-import Patients from './../../../models/patient/PatientModel';
 import Appointments from '../../../models/appointments/ApptModel';
 
-type Props = {};
+type Props = {
+    inputDate: string;
+    setDate: React.Dispatch<React.SetStateAction<string>>
+};
 
-function ApptColumn({ }: Props) {
+function ApptColumn({ inputDate, setDate }: Props) {
 
     const navigateTo = useNavigate();
 
     const [appointments, sptLoading, sptError] = Appointments.findAll();
-    const [inputDate, setInputDate] = React.useState('');
 
     const appts = appointments?.docs.map(doc => doc.data());
     const filteredAppts = appts?.filter(appt => new Date(appt?.date.seconds * 1000).toLocaleDateString("sv-SE") == inputDate);
 
     return (
-        <Paper sx={{ width: '100%', p: '16px' }}>
+        <Paper elevation={0} sx={{ width: '100%', p: '16px' }}>
             <Typography sx={{ color: '#333', fontWeight: 700, fontSize: '18px' }}>
                 Appointments
             </Typography>
-            <Calendar date={inputDate} setDate={setInputDate} />
+            <Calendar setDate={setDate} />
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0px 0px 15px 0px' }}>
                 <Typography>
                     <strong> {filteredAppts?.length} </strong> appointments
                 </Typography>
                 <IconButton onClick={() => navigateTo('../appointments')}>
-                    <Icon path={mdiArrowRightThin} size={'30px'}/>
+                    <Icon path={mdiArrowRightThin} size={'30px'} />
                 </IconButton>
             </Box>
-            <ApptItemsList filteredAppts={filteredAppts}/>
+            <ApptItemsList filteredAppts={filteredAppts} />
         </Paper>
     )
 }

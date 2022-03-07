@@ -27,7 +27,7 @@ function ApptItemsList({ filteredAppts }: Props) {
 
             {
                 (filteredAppts?.length == 0) &&
-                <ApptAlert text={"No appointments on this date"}/>
+                <ApptAlert text="No appointments on this date"/>
             }
 
         </Box>

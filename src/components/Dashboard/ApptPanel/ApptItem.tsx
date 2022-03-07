@@ -27,7 +27,7 @@ function ApptItem({ patientId }: Props) {
                     alt={patient?.data()?.name}
                     src="/static/images/avatar/1.jpg"
                     variant="square"
-                    sx={{ width: 38, height: 38, borderRadius: '5px', fontSize: '20px' }}
+                    sx={{ width: 38, height: 38, borderRadius: '5px', fontSize: '15px' }}
                 />
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px' }}>
                     <Typography sx={{ fontSize: '13px', fontWeight: 900 }}>

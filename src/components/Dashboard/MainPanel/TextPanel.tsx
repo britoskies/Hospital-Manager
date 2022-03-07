@@ -17,7 +17,7 @@ function TextPanel({ }: Props) {
                     alignItems: 'left',
                     justifyContent: 'left',
                     px: 3,
-                    p: '50px 30px',
+                    p: '40px 30px',
                     color: 'white'
                 }}
             >
@@ -25,12 +25,13 @@ function TextPanel({ }: Props) {
                     Welcome to Dashboard
                 </Typography>
                 <Typography sx={{ fontSize: '18px', fontWeight: 900 }}>
-                    Lorem Ipsum
+                    Cosmetic Surgery Center
                 </Typography>
 
                 <Typography sx={{ width: 400, fontSize: '13px', fontWeight: 300, fontStyle: 'italic', marginTop: '30px' }}>
-                    Lorem ipsum dolor amet, amet lorem ipsim dolor,
-                    a met dolor ipsum lorem dolor ipsum lorem amet lorem dolor
+                    At The Plastic Surgery Center,
+                    our experienced surgeon is trained
+                    to perform a variety of cosmetic procedures.
                 </Typography>
             </Paper>
         </Box>

@@ -24,6 +24,7 @@ export interface iPatient {
     born_date: Timestamp
     gender: string
     active_status: boolean
+    notes: string
     diagnoses?: iDiagnoses[]
 }
 
@@ -36,5 +37,6 @@ export interface iOptionalPatient {
     born_date?: Timestamp
     gender?: string
     active_status?: boolean
+    notes: string
     diagnoses?: iDiagnoses[]
 }

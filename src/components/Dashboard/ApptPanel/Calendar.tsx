@@ -1,23 +1,13 @@
-import React, { Dispatch, SetStateAction, useContext, useEffect } from 'react';
+import React from 'react';
 
 // MUI imports
-import { Box, FormControl, TextField, Typography } from '@mui/material';
-import CalendarPicker from '@mui/lab/CalendarPicker';
-import { PickerSelectionState } from '@mui/lab/internal/pickers/hooks/usePickerState';
-
-// Model imports
-import Appointments from '../../../models/appointments/ApptModel';
-import Patients from '../../../models/patient/PatientModel';
-
-// App Context
-import { AppContext } from '../../../persistence/context';
+import { Box, FormControl, TextField} from '@mui/material';
 
 type Props = {
-    date: string
-    setDate: Dispatch<SetStateAction<string>>
+    setDate: React.Dispatch<React.SetStateAction<string>>
 };
 
-function Calendar({ date, setDate }: Props) {
+function Calendar({ setDate }: Props) {
 
     const [textFieldDate, setTextFieldDate] = React.useState(new Date().toLocaleDateString("sv-SE"));
 

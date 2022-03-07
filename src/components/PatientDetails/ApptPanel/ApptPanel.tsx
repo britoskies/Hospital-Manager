@@ -24,7 +24,7 @@ type Props = {
 };
 
 function ApptPanel({ pastAppts, dueAppts }: Props) {
-    
+
     // Dialog handling
     const [open, setOpen] = React.useState<boolean>(false);
 
@@ -83,7 +83,7 @@ function ApptPanel({ pastAppts, dueAppts }: Props) {
 
     return (
         <Box>
-            <Paper sx={{ width: 'auto', height: 'auto', p: '24px', marginTop: '16px' }}>
+            <Paper elevation={0} sx={{ width: 'auto', height: 'auto', p: '24px', marginTop: '16px' }}>
                 <TabsUnstyled defaultValue={0}>
                     <Box className='top-container' sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Typography sx={{ display: 'flex', alignItems: 'center', color: '#333', fontWeight: 500, fontSize: '20px' }}>
@@ -118,10 +118,10 @@ function ApptPanel({ pastAppts, dueAppts }: Props) {
 
                     <Box className='bottom-container'>
                         <TabPanel value={0}>
-                            <ApptItemsList dueAppts={dueAppts}/>
+                            <ApptItemsList dueAppts={dueAppts} />
                         </TabPanel>
                         <TabPanel value={1}>
-                            <ApptItemsList pastAppts={pastAppts}/>
+                            <ApptItemsList pastAppts={pastAppts} />
                         </TabPanel>
                     </Box>
                 </TabsUnstyled>
