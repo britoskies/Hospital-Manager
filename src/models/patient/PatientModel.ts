@@ -50,6 +50,7 @@ const Patients = {
                 'born_date' in object &&
                 'gender' in object &&
                 'active_status' in object &&
+                'notes' in object &&
                 'diagnoses' in object
             );
         }

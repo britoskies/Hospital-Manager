@@ -30,6 +30,7 @@ function PatientDetailsView({ }: Props) {
   const address = patient?.data()?.address;
   const phoneNumber = patient?.data()?.phone_number;
   const gender = patient?.data()?.gender;
+  const notes = patient?.data()?.notes;
 
   // Appointments data
   const [appointments, apptLoading, apptError] = Appointments.findByPatientId(`${id}`);
@@ -57,7 +58,7 @@ function PatientDetailsView({ }: Props) {
           </Grid>
           <Grid item xs>
             <DiagnosesPanel />
-            <NotesPanel />
+            <NotesPanel notes={notes} />
           </Grid>
         </Grid>
       </Box>

@@ -8,11 +8,8 @@ type Props = {
     bornDate: string,
     ssn: number,
     address: string,
-    // maritualStatus: string,
     phoneNumber: string,
     gender: string,
-    // insurance: string | null,
-    // registrationDate: string
 };
 
 function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
@@ -39,11 +36,10 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
     };
 
     return (
-        <Paper sx={{
+        <Paper elevation={0} sx={{
             width: 'auto',
             height: 'auto',
-            p: '24px',
-            margin: '16px 0     px 16px 0px'
+            p: '24px'
         }}>
             <Typography component='div' sx={{
                 display: 'flex',
@@ -101,10 +97,6 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
                         <Typography sx={{ color: '#C0C0C0', fontSize: '14px' }}> Address </Typography>
                         <Typography sx={{ fontWeight: 900, fontSize: '16px' }}> {address} </Typography>
                     </Box>
-                    {/* <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={{ color: '#C0C0C0', fontSize: '14px' }}> Marital status </Typography>
-                            <Typography sx={{ fontWeight: 900, fontSize: '16px' }}> Married </Typography>
-                        </Box> */}
                 </Box>
 
                 <Box className='right-container'>
@@ -118,12 +110,8 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
                     </Box>
                     <Box sx={{ marginBottom: '10px' }}>
                         <Typography sx={{ color: '#C0C0C0', fontSize: '14px' }}> Insurance </Typography>
-                        <Typography sx={{ fontWeight: 900, fontSize: '16px' }}> Senasa </Typography>
+                        <Typography sx={{ fontWeight: 900, fontSize: '16px' }}> N/A </Typography>
                     </Box>
-                    {/* <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={{ color: '#C0C0C0', fontSize: '14px' }}> Registered On </Typography>
-                            <Typography sx={{ fontWeight: 900, fontSize: '16px' }}> 12/8/2022 </Typography>
-                        </Box> */}
                 </Box>
             </Box>
         </Paper>

@@ -1,11 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+
+// Mui imports
 import { Paper } from '@mui/material'
 import { DataGrid, GridColDef, GridSelectionModel, GridValueGetterParams } from '@mui/x-data-grid';
+
+// Context
+import { AppContext } from '../../persistence/context';
+
+// Components
+import { Spinner } from '../common';
+
+// Model
 import Patients from '../../models/patient/PatientModel';
 import Appointments from '../../models/appointments/ApptModel';
-import { AppContext } from '../../persistence/context';
-import { Spinner } from '../common';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70, hide: true, headerClassName: 'appointments-table-header' },
@@ -18,7 +26,7 @@ type Props = {
   searchTerm: string;
 };
 
-export default function DataTable({searchTerm}: Props) {
+export default function DataTable({ searchTerm }: Props) {
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
 
   const [patients, ptloading, pterror] = Patients.findAll()
@@ -29,14 +37,12 @@ export default function DataTable({searchTerm}: Props) {
 
   const [filteredRows, setFilteredRows] = useState<any[]>(rows)
 
-  const navigate = useNavigate()
-
   const getPatientName = (patient_id: string) => {
     return patients?.docs.find(x => x.id == patient_id)?.data().name
   }
 
   useEffect(() => {
-    if(appointments && appointments){
+    if (appointments && appointments) {
       let tmprows: any[] = []
 
       appointments.docs.map(doc => {
@@ -65,14 +71,11 @@ export default function DataTable({searchTerm}: Props) {
     setFilteredRows(filtered)
   }, [searchTerm])
 
-  
-  //selectionModel.map(s => console.log(rows[s-1]))
-
   return (
-    <Paper sx={{ 
-      height: "475px", 
+    <Paper sx={{
+      height: "475px",
       width: '100%',
-      mt: 2, 
+      mt: 2,
       px: 2,
       py: 0.5,
       '& .appointments-table': {
@@ -101,24 +104,24 @@ export default function DataTable({searchTerm}: Props) {
           bgcolor: "#f0f0f0",
         },
       }
-    }} 
-    elevation={0}
-  >
-    <DataGrid
-      rows={filteredRows}
-      columns={columns}
-      pageSize={6}
-      components={{NoRowsOverlay: Spinner}}
-      rowsPerPageOptions={[6]}
-      onSelectionModelChange={(newSelectionModel) => {
-        setSelectionModel(newSelectionModel);
-      }}
-      getRowClassName={(params) => `appointments-table-row appointments-table-row--${(filteredRows.findIndex(row => row.id == params.id))%2}`}
-      selectionModel={selectionModel}
-      //checkboxSelection
-      disableSelectionOnClick
-      className="appointments-table"
-    />
-  </Paper>
+    }}
+      elevation={0}
+    >
+      <DataGrid
+        rows={filteredRows}
+        columns={columns}
+        pageSize={6}
+        components={{ NoRowsOverlay: Spinner }}
+        rowsPerPageOptions={[6]}
+        onSelectionModelChange={(newSelectionModel) => {
+          setSelectionModel(newSelectionModel);
+        }}
+        getRowClassName={(params) => `appointments-table-row appointments-table-row--${(filteredRows.findIndex(row => row.id == params.id)) % 2}`}
+        selectionModel={selectionModel}
+        //checkboxSelection
+        disableSelectionOnClick
+        className="appointments-table"
+      />
+    </Paper>
   );
 }

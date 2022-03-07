@@ -11,31 +11,35 @@ import { mdiAccountClock } from '@mdi/js';
 // Model imports
 import Appointments from '../../../models/appointments/ApptModel';
 
-type Props = {};
+type Props = {
+    inputDate: string;
+};
 
-function DiagnosesPanel({ }: Props) {
+function DiagnosesPanel({ inputDate }: Props) {
 
     const [appointments, sptLoading, sptError] = Appointments.findAll();
-    const appts = appointments?.docs.map(doc => new Date(doc.data().date.seconds*1000).toLocaleDateString());
+    const appts = appointments?.docs.map(doc => new Date(doc.data().date.seconds * 1000).toLocaleDateString("sv-SE"));
+    const patientsTreated = appointments?.docs.filter(appt => new Date(appt?.data().date.seconds * 1000).getTime() < Date.now());
+    const patientsForToday = appts?.filter(appt => appt == inputDate);
 
     return (
-        <Paper sx={{ p: '20px', margin: '16px 0px 16px 0px' }}>
+        <Paper elevation={0} sx={{ p: '20px', margin: '16px 0px 16px 0px' }}>
             <Typography sx={{ color: '#333', fontWeight: 700, fontSize: '18px' }}>
                 Overview
             </Typography>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center'}}>
-                    <Icon path={mdiAccountMultipleCheck} size={'50px'} color={'#4A5D79'}/>
+                <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                    <Icon path={mdiAccountMultipleCheck} size={'50px'} color={'#4A5D79'} />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ color: '#333333', fontSize: '20px', fontWeight: 700 }}>
-                            8
+                            {patientsTreated?.length}
                         </Typography>
                         <Typography sx={{ color: '#333333', fontSize: '13px', fontWeight: 700 }}>
                             Patients treated
                         </Typography>
                         <Typography sx={{ color: '#C0C0C0', fontSize: '9px', fontWeight: 700 }}>
-                            TODAY
+                            IN TOTAL
                         </Typography>
                     </Box>
                 </Box>
@@ -44,10 +48,10 @@ function DiagnosesPanel({ }: Props) {
                     <Icon path={mdiAccountClock} size={'45px'} color={'#4A5D79'} />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ color: '#333333', fontSize: '20px', fontWeight: 700 }}>
-                            15
+                            {patientsForToday?.length}
                         </Typography>
                         <Typography sx={{ color: '#333333', fontSize: '13px', fontWeight: 700 }}>
-                            Patients left
+                            Patients
                         </Typography>
                         <Typography sx={{ color: '#C0C0C0', fontSize: '9px', fontWeight: 700 }}>
                             TODAY
@@ -59,7 +63,7 @@ function DiagnosesPanel({ }: Props) {
                     <Icon path={mdiCalendarMonth} size={'45px'} color={'#4A5D79'} />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ color: '#333333', fontSize: '20px', fontWeight: 700 }}>
-                            { appts?.length }
+                            {appts?.length}
                         </Typography>
                         <Typography sx={{ color: '#333333', fontSize: '13px', fontWeight: 700 }}>
                             Patients scheduled
