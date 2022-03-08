@@ -14,19 +14,19 @@ type Props = {
 function ProfilePanel({ name, appts }: Props) {
 
     const dates = appts?.map(appt => new Date(appt.date.seconds * 1000).toLocaleDateString());
-    let sortedDates = dates?.sort();
-    let nextAppt: any = sortedDates?.slice(0, 1).toLocaleString();
+    let sortedDates: any = dates?.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+    let nextAppt: any = sortedDates[0]?.toLocaleString();
 
     const generateMonth = () => {
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let month = months[new Date(nextAppt)?.getMonth()];
-        if (month == undefined) return ''
+        if (month == undefined) return '';
         return `${month}`
     }
 
     const generateDayNumber = () => {
         let dayNum = new Date(nextAppt)?.getDate();
-        if (isNaN(dayNum)) return ''
+        if (isNaN(dayNum)) return '';
         return `${dayNum}`
     }
 

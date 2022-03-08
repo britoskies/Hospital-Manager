@@ -39,7 +39,7 @@ function SignIn({ }: Props) {
     const [passwordError, setPasswordError] = useState(false);
 
     const [values, setValues] = React.useState({
-        showPassword: false,
+        showPassword: true,
     });
 
     const navigate = useNavigate()
@@ -127,7 +127,7 @@ function SignIn({ }: Props) {
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                         id='outlined-adornment-password'
-                        type={values.showPassword ? 'text' : 'password'}
+                        type={!values.showPassword ? 'text' : 'password'}
                         onChange={(e) => handlePassword(e)}
                         className="signin-input"
                         error={passwordError}
