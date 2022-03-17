@@ -1,9 +1,13 @@
-//React Imports
-import React, { useContext, useState } from "react";
+// React Imports
+import React from "react";
+import { useParams } from "react-router-dom";
 
 // Patients models
-import PatientModel from "../../../models/patient/PatientModel";
 import Patients from "../../../models/patient/PatientModel";
+import Appointments from "../../../models/appointments/ApptModel";
+
+// Persistence
+import { AppContext } from "../../../persistence/context";
 
 // Material imports
 import {
@@ -11,7 +15,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   FormControl,
   InputLabel,
@@ -19,13 +22,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import MobileDatePicker from "@mui/lab/MobileDatePicker";
-
-// Context
-import { AppContext } from "../../../persistence/context";
-import { Timestamp } from "firebase/firestore";
-import Appointments from "../../../models/appointments/ApptModel";
-import { useParams } from "react-router-dom";
 
 type Props = {
   open: boolean;
@@ -33,59 +29,69 @@ type Props = {
 };
 
 function AddDialog({ onClose, open }: Props) {
+
   let { id } = useParams()
-  const { defaultDoctor } = useContext(AppContext);
+  const { defaultDoctor } = React.useContext(AppContext);
 
-  const [date, setDate] = useState(new Date().toLocaleDateString("sv-SE"));
-  const [doctorId, setDoctorId] = useState(defaultDoctor.id);
-  const [patientId, setPatientId] = useState(`${id}`);
-  const [treatment, setTreatment] = useState("");
+  const [date, setDate] = React.useState(new Date().toLocaleDateString("sv-SE"));
+  const [time, setTime] = React.useState<string>('12:00');
+  const [doctorId, setDoctorId] = React.useState(defaultDoctor.id);
+  const [patientId, setPatientId] = React.useState(`${id}`);
+  const [treatment, setTreatment] = React.useState("");
 
-  const [patients, loading, error] = PatientModel.findAll();
-  const [patient, ptLoading, ptError] = Patients.findById(`${id}`);
+  const [patient] = Patients.findById(`${id}`);
 
   const handleClose = () => {
     setDate(new Date().toLocaleDateString("sv-SE"));
+    setTime('12:00');
     setDoctorId(defaultDoctor.id);
     setPatientId("");
     setTreatment("");
     return onClose();
   };
 
-  const handleCancel = () => {
-    return handleClose();
-  };
+  const handleCancel = () => handleClose();
 
   const handleAccept = () => {
-    if (date && doctorId && patientId && treatment) {
+    if (date && time && doctorId && patientId && treatment) {
       save();
       return handleClose();
     }
   };
 
   const save = async () => {
-    const newapptDate = ~~(new Date(date).getTime() / 1000);
-    const newappt = {
-      date: new Timestamp(newapptDate, 0),
+    const newAppt = {
+      date: new Date(new Date(date).getTime() + 86400000),
+      time,
       patient_id: patientId,
       doctor_id: doctorId,
-      treatment: treatment,
+      treatment,
     };
-
-    await Appointments.create(newappt);
+    await Appointments.create(newAppt);
   };
-
+  
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
       <DialogTitle>Add New Appointment</DialogTitle>
       <DialogContent>
-        <FormControl sx={{ mb: 3, mt: 3 }} fullWidth>
+        <FormControl sx={{ display: 'flex', flexDirection: 'row', gap: 1, mb: 3, mt: 3 }} fullWidth>
           <TextField
             id="date"
             label="Date"
             type="date"
             defaultValue={date}
             onChange={(e) => setDate(e.target.value)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+          />
+          <TextField
+            id="time"
+            label="Time"
+            type="time"
+            defaultValue={time}
+            onChange={(e) => setTime(e.target.value)}
             InputLabelProps={{
               shrink: true,
             }}
@@ -135,7 +141,7 @@ function AddDialog({ onClose, open }: Props) {
         <Button onClick={handleCancel}>Cancel</Button>
         <Button
           onClick={handleAccept}
-          disabled={!(date && doctorId && patientId && treatment)}
+          disabled={!(date && time && doctorId && patientId && treatment)}
         >
           Save
         </Button>

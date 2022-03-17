@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 // Mui Components
 import { 
   Button,
-  Box
+  Box,
+  Typography
 } from '@mui/material';
 
 // Patients Components
@@ -34,23 +35,13 @@ function PatientsView({}: Props) {
   return (
     <Box className="patients-view" sx={{width: "100%"}}>
         <Box 
-          sx={{
-            display: 'flex', 
-            justifyContent: 'end',
-          }}
-        >
-          <Button 
-            variant="contained" 
-            onClick={handleClickOpen}
-            sx={{
-              mb: 3
-            }}
-          >Add Patient</Button>
+          sx={{ display: 'flex', justifyContent: 'end',}}>
+        <Button variant="contained" onClick={handleClickOpen} sx={{ mb: 3 }}>
+          <Typography sx={{ fontSize: '15px', fontWeight: 'bold', mr: 1 }}> + </Typography>
+          Add Patient
+        </Button>
         </Box>
-        <AddDialog
-          open={open}
-          onClose={handleClose}
-        />
+        <AddDialog open={open} onClose={handleClose}/>
         <ViewTitle title="Patients" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm}/>
         <Table searchTerm={searchTerm} />
     </Box>

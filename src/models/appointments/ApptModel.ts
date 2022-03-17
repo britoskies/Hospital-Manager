@@ -51,7 +51,8 @@ const Appointments = {
                 'patient_id' in object &&
                 'doctor_id' in object &&
                 'date' in object &&
-                'treatment' in object
+                'treatment' in object &&
+                'time' in object
             );
         }
 

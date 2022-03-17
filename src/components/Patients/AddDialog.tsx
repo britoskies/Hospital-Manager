@@ -92,7 +92,7 @@ function AddDialog({ onClose, open }: Props) {
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
-      <DialogTitle>Add New Patient</DialogTitle>
+      <DialogTitle>New Patient</DialogTitle>
       <DialogContent>
         <FormControl sx={{ mb: 3, mt: 3 }} fullWidth>
           <TextField

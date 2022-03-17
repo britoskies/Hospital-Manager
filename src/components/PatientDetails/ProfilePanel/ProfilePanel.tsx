@@ -1,22 +1,21 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 
 // Material imports
 import { Avatar, IconButton, Menu, MenuItem, Paper, Typography, Box } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+// Prop types imports
+import { DocumentData } from 'firebase/firestore';
+import { iAppointments } from '../../../models/appointments/ApptSchema';
+
 type Props = {
     name: string;
-    appts: any[] | undefined
-    id: string | undefined;
+    time: string
+    nextAppt: string;
 };
 
-function ProfilePanel({ name, appts }: Props) {
-
-    const dates = appts?.map(appt => new Date(appt.date.seconds * 1000).toLocaleDateString());
-    let sortedDates: any = dates?.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-    let nextAppt: any = sortedDates[0]?.toLocaleString();
-
+function ProfilePanel({ name, time, nextAppt }: Props) {
+    
     const generateMonth = () => {
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let month = months[new Date(nextAppt)?.getMonth()];
@@ -113,7 +112,7 @@ function ProfilePanel({ name, appts }: Props) {
             <Typography sx={{ color: '#333', fontWeight: 'bold', fontSize: '16px' }}>
                 {
                     (generateMonth() || generateDayNumber())
-                        ? `${generateMonth()}, ${generateDayNumber()}th 2:00PM`
+                        ? `${generateMonth()}, ${generateDayNumber()}th ${time}`
                         : 'N/A'
                 }
             </Typography>

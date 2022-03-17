@@ -18,11 +18,9 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import MobileDatePicker from "@mui/lab/MobileDatePicker";
 
 // Context
 import { AppContext } from "../../persistence/context";
-import { Timestamp } from "firebase/firestore";
 import Appointments from "../../models/appointments/ApptModel";
 
 type Props = {
@@ -31,9 +29,11 @@ type Props = {
 };
 
 function AddDialog({ onClose, open }: Props) {
-  const { defaultDoctor } = useContext(AppContext);
 
-  const [date, setDate] = useState(new Date().toLocaleDateString("sv-SE"));
+  const { defaultDoctor } = useContext(AppContext);
+  
+  const [date, setDate] = useState(new Date().toLocaleDateString('sv-SE'));
+  const [time, setTime] = useState<string>('12:00');
   const [doctorId, setDoctorId] = useState(defaultDoctor.id);
   const [patientId, setPatientId] = useState("");
   const [treatment, setTreatment] = useState("");
@@ -41,47 +41,56 @@ function AddDialog({ onClose, open }: Props) {
   const [patients, loading, error] = PatientModel.findAll();
 
   const handleClose = () => {
-    setDate(new Date().toLocaleDateString("sv-SE"));
+    setDate(new Date().toLocaleDateString('sv-SE'));
+    setTime('12:00');
     setDoctorId(defaultDoctor.id);
     setPatientId("");
     setTreatment("");
     return onClose();
   };
 
-  const handleCancel = () => {
-    return handleClose();
-  };
+  const handleCancel = () => handleClose();
 
   const handleAccept = () => {
-    if (date && doctorId && patientId && treatment) {
+    if (date && time && doctorId && patientId && treatment) {
       save();
       return handleClose();
     }
   };
 
   const save = async () => {
-    const newapptDate = ~~(new Date(date).getTime() / 1000);
-    const newappt = {
-      date: new Timestamp(newapptDate, 0),
+    const newAppt = {
+      date: new Date(new Date(date).getTime() + 86400000),
+      time,
       patient_id: patientId,
       doctor_id: doctorId,
-      treatment: treatment,
+      treatment,
     };
-
-    await Appointments.create(newappt);
+    await Appointments.create(newAppt);
   };
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
-      <DialogTitle>Add New Appointment</DialogTitle>
+      <DialogTitle>New Appointment</DialogTitle>
       <DialogContent>
-        <FormControl sx={{ mb: 3, mt: 3 }} fullWidth>
+        <FormControl sx={{ display: 'flex', flexDirection: 'row', gap: 1, mb: 3, mt: 3 }} fullWidth>
           <TextField
             id="date"
             label="Date"
             type="date"
             defaultValue={date}
             onChange={(e) => setDate(e.target.value)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+          />
+          <TextField
+            id="time"
+            label="Time"
+            type="time"
+            defaultValue={time}
+            onChange={(e) => setTime(e.target.value)}
             InputLabelProps={{
               shrink: true,
             }}
@@ -134,7 +143,7 @@ function AddDialog({ onClose, open }: Props) {
         <Button onClick={handleCancel}>Cancel</Button>
         <Button 
           onClick={handleAccept}
-          disabled={!(date && doctorId && patientId && treatment)}
+          disabled={!(date && time && doctorId && patientId && treatment)}
         >
           Save
         </Button>
