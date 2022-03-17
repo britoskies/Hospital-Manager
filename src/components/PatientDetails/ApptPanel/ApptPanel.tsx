@@ -118,10 +118,10 @@ function ApptPanel({ pastAppts, dueAppts }: Props) {
 
                     <Box className='bottom-container'>
                         <TabPanel value={0}>
-                            <ApptItemsList dueAppts={dueAppts} />
+                            <ApptItemsList dueAppts={dueAppts}/>
                         </TabPanel>
                         <TabPanel value={1}>
-                            <ApptItemsList pastAppts={pastAppts} />
+                            <ApptItemsList pastAppts={pastAppts}/>
                         </TabPanel>
                     </Box>
                 </TabsUnstyled>

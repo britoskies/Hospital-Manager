@@ -10,24 +10,24 @@ import { ApptAlert } from '../..';
 import { Box } from '@mui/material';
 
 type Props = {
-    pastAppts?: any[] | undefined;
-    dueAppts?: any[] | undefined;
+    pastAppts?: any[];
+    dueAppts?: any[];
 };
 
 function ApptItemsList({ pastAppts, dueAppts }: Props) {
 
-    let key = 0;
+    let key: number = 0;
 
     return (
         <Box className='items-list' sx={{ display: 'flex', flexDirection: 'column', height: '420px', gap: '10px', marginTop: '30px', overflowY: 'auto' }}>
             {
                pastAppts && pastAppts?.map(appt => { 
-                   return <ApptItem key={key++} apptData={appt} />
+                   return <ApptItem key={key++} apptData={appt}/>
                 })
             }
             {
                 dueAppts && dueAppts?.map(appt => {
-                    return <ApptItem key={key++} apptData={appt} />
+                    return <ApptItem key={key++} apptData={appt}/>
                 })
                 
             }

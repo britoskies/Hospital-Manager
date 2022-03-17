@@ -1,22 +1,19 @@
 // React imports
-import React, { useState } from 'react';
+import React from 'react';
 
 // Mui Components
-import {
-  Button,
-  Box
-} from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 
 // Appointments Components
 import AddDialog from '../../components/Appointments/AddDialog';
 import Table from '../../components/Appointments/Table';
-import { SearchBar, ViewTitle } from '../../components';
+import { ViewTitle } from '../../components';
 
 type Props = {};
 
 function AppointmentsView({}: Props) {
-  const [open, setOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("")
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = React.useState<string>("")
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -32,24 +29,13 @@ function AppointmentsView({}: Props) {
 
   return (
     <Box className="appointments-view" sx={{width: "100%"}}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'end',
-        }}
-      >
-        <Button
-          variant="contained"
-          onClick={handleClickOpen}
-          sx={{
-            mb: 3
-          }}
-        >Add Appointment</Button>
+      <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+        <Button variant="contained" onClick={handleClickOpen} sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+          <Typography sx={{ fontSize: '15px', fontWeight: 'bold', mr: 1 }}> + </Typography>
+          Add Appointment
+        </Button>
       </Box>
-      <AddDialog
-        open={open}
-        onClose={handleClose}
-      />
+      <AddDialog open={open} onClose={handleClose}/>
       <ViewTitle title="Appointments" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm}/>
       <Table searchTerm={searchTerm}/>
     </Box>

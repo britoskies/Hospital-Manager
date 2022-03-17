@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 // Context
 import { AppContext } from "../../../persistence/context";
@@ -11,12 +11,16 @@ import { IconButton, Menu, MenuItem, Box, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 type Props = {
-    apptData: DocumentData | undefined;
+    apptData: DocumentData;
 };
 
 function ApptItem({ apptData }: Props) {
-
-    const { defaultDoctor } = useContext(AppContext);
+    
+    const { defaultDoctor } = React.useContext(AppContext);
+   
+    // Icon menu handling
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
 
     // Menu icon config
     const options = [
@@ -40,20 +44,6 @@ function ApptItem({ apptData }: Props) {
         let dayNum = new Date(apptData?.date.seconds * 1000).getDate();
         return `${dayNum}`
     }
-
-    const formatTime = () => {
-        let hh = (((new Date(apptData?.date.seconds * 1000).getHours()) + 11) % 12 + 1);
-        let dd = "AM";
-        let h = hh;
-        if (h >= 12) { h = hh - 12; dd = "PM"; }
-        if (h === 0) { h = 12; }
-
-        return `${hh}${dd}`
-    }
-
-    // Icon menu handling
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -110,10 +100,7 @@ function ApptItem({ apptData }: Props) {
             </Box>
             <Box sx={{ display: 'flex', marginTop: '10px' }}>
                 <Typography sx={{ color: '#C0C0C0', fontSize: '11px', marginRight: '62px' }}>
-                    {
-                     //(((new Date(apptData?.date.seconds * 1000).getHours()) + 11) % 12 + 1)
-                        formatTime()
-                    }
+                    {apptData?.time}
                 </Typography>
                 <Box sx={{ display: 'flex', gap: '8px' }}>
                     <Typography sx={{ color: '#C0C0C0', fontSize: '11px' }}> Doctor </Typography>
