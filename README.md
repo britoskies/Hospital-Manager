@@ -1,12 +1,14 @@
 # HMS-Starter
 Hospital Management System. Starter Pack, for a Single Doctor
 
-### Includes
+### Features
 
 This pack includes the following modules:
-  - Manage appointments
-  - Manage patients information, appointments and status
-  - Receive in-screen notifications of future appointments
+  - Manage appointments.
+  - Manage patients personal information and status of application.
+  - Receive current information of the system immediately.
+  - System itself leaves no room for error.
+  - Usage effiency on point, keeping everything simple.
 
 ### Note
 
