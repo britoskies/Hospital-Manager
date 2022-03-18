@@ -1,18 +1,10 @@
 import { Timestamp } from 'firebase/firestore'
 
-interface iPrescription { 
-    id: number
-    medicine: string
-    dosis: string
-    period: string
-}
-
-interface iDiagnoses { 
-    id: number
-    date: Timestamp
-    symptoms: string
-    diagnosis: string
-    prescription: iPrescription[]
+interface iPhysicalCondition { 
+    date: string
+    blood_pressure: string
+    sugar_level: string
+    cholesterol: string
 }
 
 export interface iPatient { 
@@ -25,7 +17,7 @@ export interface iPatient {
     gender: string
     active_status: boolean
     notes: string
-    diagnoses?: iDiagnoses[]
+    physical_condition?: iPhysicalCondition[]
 }
 
 export interface iOptionalPatient {
@@ -37,6 +29,6 @@ export interface iOptionalPatient {
     born_date?: Timestamp
     gender?: string
     active_status?: boolean
-    notes: string
-    diagnoses?: iDiagnoses[]
+    notes?: string
+    physical_condition?: iPhysicalCondition[]
 }

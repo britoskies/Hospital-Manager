@@ -69,6 +69,15 @@ function AddDialog({ onClose, open }: Props) {
     await Appointments.create(newAppt);
   };
 
+  const formatDate = (date: Date) => {
+    let months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+    let month = months[new Date(date).getMonth()];
+    let dayNum = new Date(date).getDate();
+    let year = new Date(date).getFullYear();
+
+    return `${year}-${month}-${dayNum}`
+  }
+
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
       <DialogTitle>New Appointment</DialogTitle>
@@ -79,10 +88,9 @@ function AddDialog({ onClose, open }: Props) {
             label="Date"
             type="date"
             defaultValue={date}
+            InputProps={{ inputProps: { min: formatDate(new Date()) } }}
             onChange={(e) => setDate(e.target.value)}
-            InputLabelProps={{
-              shrink: true,
-            }}
+            InputLabelProps={{ shrink: true }}
             fullWidth
           />
           <TextField

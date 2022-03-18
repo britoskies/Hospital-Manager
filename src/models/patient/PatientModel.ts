@@ -34,7 +34,7 @@ const Patients = {
         await deleteDoc(doc(this.db, 'patients', patientId));
     },
 
-    async updateById(patientId: string, data: Object|iOptionalPatient) { 
+    async updateById(patientId: string, data: Object | iOptionalPatient) { 
         await updateDoc(doc(this.db, 'patients', patientId), data);
     },
 
@@ -51,7 +51,7 @@ const Patients = {
                 'gender' in object &&
                 'active_status' in object &&
                 'notes' in object &&
-                'diagnoses' in object
+                'physical_condition' in object
             );
         }
 
