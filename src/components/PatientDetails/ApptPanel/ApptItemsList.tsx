@@ -5,13 +5,16 @@ import './scrollbar.css';
 import ApptItem from './ApptItem';
 import { ApptAlert } from '../..';
 
-
 // MUI imports
 import { Box } from '@mui/material';
 
+// Firebase and models imports
+import { DocumentData } from 'firebase/firestore';
+import { iAppointments } from '../../../models/appointments/ApptSchema';
+
 type Props = {
-    pastAppts?: any[];
-    dueAppts?: any[];
+    pastAppts?: (DocumentData | iAppointments)[] | undefined;
+    dueAppts?: (DocumentData | iAppointments)[] | undefined;
 };
 
 function ApptItemsList({ pastAppts, dueAppts }: Props) {

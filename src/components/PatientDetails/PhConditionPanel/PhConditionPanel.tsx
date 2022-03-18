@@ -1,7 +1,8 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 // Components and Views imports
-import DiagnosesSlider from './DiagnosesItem';
+import PhConditionItem from './PhConditionItem';
 import Patients from '../../../models/patient/PatientModel';
 
 // Mui imports
@@ -10,9 +11,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 type Props = {};
 
-function DiagnosesPanel({ }: Props) {
+function PhConditionPanel({ }: Props) {
 
-    const [date, dLoading, dError] = Patients.findById("RATfJrCiemTKZYhZPIR0");
+    const { id } = useParams();
+    const [phCondition] = Patients.findById(`${id}`);
 
     // Menu icon config
     const options = [
@@ -49,7 +51,7 @@ function DiagnosesPanel({ }: Props) {
                 fontWeight: 500,
                 fontSize: '20px'
             }}>
-                Diagnoses
+                Physical Condition
 
                 <IconButton
                     aria-label="more"
@@ -83,14 +85,14 @@ function DiagnosesPanel({ }: Props) {
                     ))}
                 </Menu>
             </Typography>
-            <DiagnosesSlider
-                date={date?.data()?.diagnoses[0]}
-                symptoms={date?.data()?.diagnoses[1]}
-                diagnosis={date?.data()?.diagnoses[2]}
-                diagnosisDesc={date?.data()?.diagnoses[3]}
+            <PhConditionItem
+                date={new Date(phCondition?.data()?.physical_condition?.date).toLocaleDateString()}
+                blood={phCondition?.data()?.physical_condition?.blood_pressure}
+                sugar={phCondition?.data()?.physical_condition?.sugar_level}
+                cholesterol={phCondition?.data()?.physical_condition?.cholesterol}
             />
         </Paper>
     )
 }
 
-export default DiagnosesPanel;
+export default PhConditionPanel;
