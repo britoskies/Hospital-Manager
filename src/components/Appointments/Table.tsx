@@ -19,6 +19,7 @@ const columns: GridColDef[] = [
   { field: 'patient', headerName: 'Patient', width: 220, headerClassName: 'appointments-table-header' },
   { field: 'doctor', headerName: 'Doctor', width: 200, headerClassName: 'appointments-table-header' },
   { field: 'date', headerName: 'Date', width: 120, type: 'date', headerClassName: 'appointments-table-header' },
+  { field: 'time', headerName: 'Time', width: 120, headerClassName: 'appointments-table-header' },
   { field: 'treatment', headerName: 'Treatment', width: 500, headerClassName: 'appointments-table-header' },
 ];
 type Props = {
@@ -28,16 +29,16 @@ type Props = {
 export default function DataTable({ searchTerm }: Props) {
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
 
-  const [patients, ptloading, pterror] = Patients.findAll()
-  const [appointments, apptloading, appterror] = Appointments.findAll()
-  const { defaultDoctor } = useContext(AppContext)
+  const [patients] = Patients.findAll();
+  const [appointments] = Appointments.findAll();
+  const { defaultDoctor } = useContext(AppContext);
 
-  const [rows, setRows] = useState<any[]>([])
+  const [rows, setRows] = useState<any[]>([]);
 
-  const [filteredRows, setFilteredRows] = useState<any[]>(rows)
+  const [filteredRows, setFilteredRows] = useState<any[]>(rows);
 
   const getPatientName = (patient_id: string) => {
-    return patients?.docs.find(x => x.id == patient_id)?.data().name
+    return patients?.docs.find(x => x.id == patient_id)?.data().name;
   }
 
   useEffect(() => {
@@ -51,7 +52,8 @@ export default function DataTable({ searchTerm }: Props) {
           date: new Date(doc.data().date.seconds * 1000).toLocaleDateString(),
           patient: getPatientName(doc.data().patient_id),
           doctor: defaultDoctor.name,
-          treatment: doc.data().treatment
+          treatment: doc.data().treatment,
+          time: doc.data().time
         })
       })
 
@@ -86,7 +88,7 @@ export default function DataTable({ searchTerm }: Props) {
       },
       '& .appointments-table-header': {
         bgcolor: 'white',
-        px: 4,
+        px: 3,
       },
       '& .appointments-table-row': {
         cursor: 'default',
