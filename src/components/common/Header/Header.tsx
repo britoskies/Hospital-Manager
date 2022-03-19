@@ -1,12 +1,12 @@
+/* eslint-disable no-empty-pattern */
 import { useNavigate } from 'react-router-dom';
 
 // Mui
 import { AppBar, Toolbar, IconButton, Typography, Box } from '@mui/material'
-import { Menu as MenuIcon, AccountCircle, Logout as Logout } from '@mui/icons-material'
+import { Logout } from '@mui/icons-material'
 
 // Model and assets
 import UserAuth from '../../../models/userauth/UserAuth';
-import Logo from '../../../assets/img/logo.png'
 
 type Props = {};
 
@@ -43,7 +43,7 @@ function Header({ }: Props) {
       {!user && (
         <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-            <img src={Logo} alt="" height="45" />
+            <img src="https://i.imgur.com/xW1XsWN.png" alt="" height="45" />
             <Typography variant="h6" component="h6" sx={{ height: 'min-content' }}>
               {appTitle}
             </Typography>
