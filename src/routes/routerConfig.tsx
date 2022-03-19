@@ -1,19 +1,18 @@
-// Router imports
+// Router
 import { CircularProgress } from "@mui/material";
 import { Navigate, RouteObject } from "react-router-dom"
-import { AppointmentsView, DashboardView, PatientDetailsView, PatientsView } from "../views";
 
-// Layouts imports
+// Layouts
 import { LoggedLayout, LoginLayout } from "../views/layouts"
+import { AppointmentsView, DashboardView, PatientDetailsView, PatientsView } from "../views";
 import SignInView from './../views/SignInView/SignInView';
 
-// Hooks Imports
-
+// Hooks 
 import { useAuthStatus } from "../hooks";
 
 const routerConfig = (isAuth: Function): RouteObject[] => {
     const { loggedIn, checkingStatus } = useAuthStatus();
-    return([
+    return ([
         {
             path: "/",
             element: checkingStatus ? <CircularProgress /> : loggedIn ? <LoggedLayout /> : <Navigate to="/login" />,

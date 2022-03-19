@@ -1,7 +1,7 @@
 import React from 'react';
 
 // MUI imports
-import { Box, FormControl, TextField} from '@mui/material';
+import { Box, FormControl, TextField } from '@mui/material';
 
 type Props = {
     setDate: React.Dispatch<React.SetStateAction<string>>

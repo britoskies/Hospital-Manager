@@ -1,3 +1,4 @@
+// Format date to yy/MM/dd
 export function formatDate(date: Date) {
     var d = date,
         month = '' + (d.getMonth() + 1),
@@ -11,6 +12,7 @@ export function formatDate(date: Date) {
     return [year, month, day].join('-');
 }
 
+// Get dates with months in their respective number
 export const formatDateWithNums = (date: Date) => {
     let months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
     let month = months[new Date(date).getMonth()];

@@ -1,11 +1,13 @@
 import React from 'react';
 
+// Components
 import { SearchBar } from '../../'
 
-import { Box, Paper } from '@mui/material'
+// Mui
+import { Paper } from '@mui/material'
 
 type Props = {
-  title: string, 
+  title: string,
   withSearchBar?: boolean,
   searchTerm?: string,
   setSearchTerm: (e: any) => void
@@ -22,7 +24,7 @@ function ViewTitle({ title, withSearchBar, searchTerm, setSearchTerm }: Props) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          px: 3, 
+          px: 3,
           color: 'white'
         }}
       >

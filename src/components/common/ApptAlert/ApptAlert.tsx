@@ -1,6 +1,4 @@
-import React from 'react'
-
-// Mui imports
+// Mui
 import { Typography } from '@mui/material'
 import { Icon } from '@mdi/react'
 import { mdiAlertCircle } from '@mdi/js'

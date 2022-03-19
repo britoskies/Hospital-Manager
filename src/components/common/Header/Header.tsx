@@ -1,17 +1,17 @@
-import React from 'react';
-
-import {AppBar, Toolbar, IconButton, Typography, Box} from '@mui/material'
-
-import {Menu as MenuIcon, AccountCircle, Logout as Logout} from '@mui/icons-material'
-import UserAuth from '../../../models/userauth/UserAuth';
-
-import Logo from '../../../assets/img/logo.png'
 import { useNavigate } from 'react-router-dom';
+
+// Mui
+import { AppBar, Toolbar, IconButton, Typography, Box } from '@mui/material'
+import { Menu as MenuIcon, AccountCircle, Logout as Logout } from '@mui/icons-material'
+
+// Model and assets
+import UserAuth from '../../../models/userauth/UserAuth';
+import Logo from '../../../assets/img/logo.png'
 
 type Props = {};
 
-function Header({}: Props) {
-  const [user, loading, error] = UserAuth.getAuthState()
+function Header({ }: Props) {
+  const [user] = UserAuth.getAuthState()
   const navigate = useNavigate()
 
   const handleSignOut = () => {
@@ -23,36 +23,34 @@ function Header({}: Props) {
 
   return (
     <AppBar position="static" color="inherit" elevation={0}>
-        
-          {user && (
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+      {user && (
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {appTitle}
+          </Typography>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleSignOut}
+            color="inherit"
+          >
+            <Logout />
+          </IconButton>
+        </Toolbar>
+      )}
+      {!user && (
+        <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+            <img src={Logo} alt="" height="45" />
+            <Typography variant="h6" component="h6" sx={{ height: 'min-content' }}>
               {appTitle}
-              </Typography>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleSignOut}
-                color="inherit"
-              >
-                <Logout />
-              </IconButton>
-            </Toolbar>
-          )}
-          {!user && (
-            <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
-              <Box sx={{display: 'flex', alignItems: 'center', flexDirection: 'row'}}>
-                <img src={Logo} alt="" height="45"/>
-                <Typography variant="h6" component="h6" sx={{ height: 'min-content' }}>
-                  {appTitle}
-                </Typography>
-              </Box>
-            </Toolbar>
-          )}
-        
-      </AppBar>
+            </Typography>
+          </Box>
+        </Toolbar>
+      )}
+    </AppBar>
   );
 }
 

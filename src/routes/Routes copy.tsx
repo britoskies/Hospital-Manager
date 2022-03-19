@@ -1,10 +1,7 @@
-// React imports
-import React from 'react';
-
-// Router imports
+// Router 
 import { useRoutes } from 'react-router-dom';
 
-// Router config
+// Router
 import routerConfig from './routerConfig'
 
 // Guards

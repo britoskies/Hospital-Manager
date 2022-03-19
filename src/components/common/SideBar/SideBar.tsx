@@ -1,14 +1,13 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-// MUI imports
+// Mui
 import { Box, styled, Tooltip, tooltipClasses, TooltipProps } from "@mui/material";
 import { mdiHome, mdiAccountClock, mdiCalendarBlank } from "@mdi/js";
 import { Icon } from "@mdi/react";
 
-type Props = {};
-
 import "./SideBar.css";
+
+type Props = {};
 
 function SideBar({ }: Props) {
 

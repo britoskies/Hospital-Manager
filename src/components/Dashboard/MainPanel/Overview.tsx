@@ -1,10 +1,6 @@
-import React from 'react';
-
-// MUI imports
-import { Box, Paper, Typography } from '@mui/material';
-
-// MUI icons imports
+// Mui
 import Icon from '@mdi/react';
+import { Box, Paper, Typography } from '@mui/material';
 import { mdiAccountMultipleCheck, mdiCalendarMonth } from '@mdi/js';
 import { mdiAccountClock } from '@mdi/js';
 
@@ -17,7 +13,7 @@ type Props = {
 
 function DiagnosesPanel({ inputDate }: Props) {
 
-    const [appointments, sptLoading, sptError] = Appointments.findAll();
+    const [appointments] = Appointments.findAll();
     const appts = appointments?.docs.map(doc => new Date(doc.data().date.seconds * 1000).toLocaleDateString("sv-SE"));
     const patientsTreated = appointments?.docs.filter(appt => new Date(appt?.data().date.seconds * 1000).getTime() < Date.now());
     const patientsForToday = appts?.filter(appt => appt == inputDate);
@@ -27,7 +23,6 @@ function DiagnosesPanel({ inputDate }: Props) {
             <Typography sx={{ color: '#333', fontWeight: 700, fontSize: '18px' }}>
                 Overview
             </Typography>
-
             <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
                 <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <Icon path={mdiAccountMultipleCheck} size={'50px'} color={'#4A5D79'} />
@@ -43,7 +38,6 @@ function DiagnosesPanel({ inputDate }: Props) {
                         </Typography>
                     </Box>
                 </Box>
-
                 <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <Icon path={mdiAccountClock} size={'45px'} color={'#4A5D79'} />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -58,7 +52,6 @@ function DiagnosesPanel({ inputDate }: Props) {
                         </Typography>
                     </Box>
                 </Box>
-
                 <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                     <Icon path={mdiCalendarMonth} size={'45px'} color={'#4A5D79'} />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>

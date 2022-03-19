@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // Patients models
 import Patients from '../../../models/patient/PatientModel';
 
-// Material imports
+// Mui
 import {
   Button,
   Dialog,
@@ -39,7 +39,7 @@ function EditNotesDialog({ onClose, open }: Props) {
   };
 
   const save = async () => {
-    await Patients.updateById(`${id}`, {name});
+    await Patients.updateById(`${id}`, { name });
   };
 
   return (
@@ -61,7 +61,7 @@ function EditNotesDialog({ onClose, open }: Props) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel}>Cancel</Button>
-        <Button 
+        <Button
           onClick={handleAccept}
           disabled={!(name)}
         >

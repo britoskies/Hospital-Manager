@@ -1,6 +1,4 @@
-import React from 'react';
-
-// MUI imports
+// Mui
 import { Box, Paper, Typography } from '@mui/material';
 
 type Props = {};
@@ -27,7 +25,6 @@ function TextPanel({ }: Props) {
                 <Typography sx={{ fontSize: '18px', fontWeight: 900 }}>
                     Cosmetic Surgery Center
                 </Typography>
-
                 <Typography sx={{ width: 400, fontSize: '13px', fontWeight: 300, fontStyle: 'italic', marginTop: '30px' }}>
                     At The Plastic Surgery Center,
                     our experienced surgeon is trained

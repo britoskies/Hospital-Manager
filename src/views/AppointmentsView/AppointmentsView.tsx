@@ -1,17 +1,16 @@
-// React imports
 import React from 'react';
 
-// Mui Components
+// Mui
 import { Button, Box, Typography } from '@mui/material';
 
-// Appointments Components
+// Components
 import AddDialog from '../../components/Appointments/AddDialog';
 import Table from '../../components/Appointments/Table';
 import { ViewTitle } from '../../components';
 
 type Props = {};
 
-function AppointmentsView({}: Props) {
+function AppointmentsView({ }: Props) {
   const [open, setOpen] = React.useState<boolean>(false);
   const [searchTerm, setSearchTerm] = React.useState<string>("")
 
@@ -28,16 +27,16 @@ function AppointmentsView({}: Props) {
   };
 
   return (
-    <Box className="appointments-view" sx={{width: "100%"}}>
+    <Box className="appointments-view" sx={{ width: "100%" }}>
       <Box sx={{ display: 'flex', justifyContent: 'end' }}>
         <Button variant="contained" onClick={handleClickOpen} sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
           <Typography sx={{ fontSize: '15px', fontWeight: 'bold', mr: 1 }}> + </Typography>
           Add Appointment
         </Button>
       </Box>
-      <AddDialog open={open} onClose={handleClose}/>
-      <ViewTitle title="Appointments" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm}/>
-      <Table searchTerm={searchTerm}/>
+      <AddDialog open={open} onClose={handleClose} />
+      <ViewTitle title="Appointments" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm} />
+      <Table searchTerm={searchTerm} />
     </Box>
   );
 }

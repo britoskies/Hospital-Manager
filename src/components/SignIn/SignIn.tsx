@@ -1,10 +1,12 @@
-// React Imports
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './SignIn.css'
 
 // User Auth Model
 import UserAuth from '../../models/userauth/UserAuth';
 
-// MUI Imports
+// Mui
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
     TextField,
     Button,
@@ -21,11 +23,6 @@ import {
     FormControl
 } from '@mui/material';
 
-// Styles
-import './SignIn.css'
-
-import { useNavigate } from 'react-router-dom';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 type Props = {};
 
@@ -87,7 +84,6 @@ function SignIn({ }: Props) {
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
-
 
     useEffect(() => {
         setsigninError(false)

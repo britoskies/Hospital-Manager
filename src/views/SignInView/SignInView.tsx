@@ -1,11 +1,10 @@
-import React from 'react';
+import './SignInView.css'
 
+// Component
 import SignIn from './../../components/SignIn/SignIn';
 
-// Mui components
+// Mui
 import { Box } from '@mui/material'
-
-import './SignInView.css'
 
 type Props = {};
 

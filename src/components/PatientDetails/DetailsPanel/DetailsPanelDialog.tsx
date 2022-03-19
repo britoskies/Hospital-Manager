@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-  
+
 // Patients models
 import Patients from '../../../models/patient/PatientModel';
 
-// Material imports
+// Mui
 import {
   Button,
   Dialog,
@@ -27,9 +27,9 @@ type Props = {
   phone: string
   gender: string
   setDoB: React.Dispatch<React.SetStateAction<string>>
-  setSsn: React.Dispatch < React.SetStateAction<string>>
-  setAddress: React.Dispatch < React.SetStateAction<string>>
-  setPhone: React.Dispatch < React.SetStateAction<string>>
+  setSsn: React.Dispatch<React.SetStateAction<string>>
+  setAddress: React.Dispatch<React.SetStateAction<string>>
+  setPhone: React.Dispatch<React.SetStateAction<string>>
   setGender: React.Dispatch<React.SetStateAction<string>>
 };
 

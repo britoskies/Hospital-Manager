@@ -1,13 +1,11 @@
-import React from 'react';
 import './scrollbar.css'
 
-// MUI imports
+// Mui
 import { Box } from '@mui/material';
 
-// Component imports
+// Component
 import ApptItem from './ApptItem';
 import { ApptAlert }from '../..';
-
 
 type Props = {
     filteredAppts: any[] | undefined
@@ -21,7 +19,7 @@ function ApptItemsList({ filteredAppts }: Props) {
         <Box className='items-list-dashboard' sx={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '395px', overflowY: 'auto' }}>
             {
                 filteredAppts && filteredAppts?.map((appt) => {
-                    return <ApptItem key={key++} patientId={appt.patient_id} />
+                    return <ApptItem key={key++} apptData={appt} patientId={appt.patient_id} />
                 })
             }
 
