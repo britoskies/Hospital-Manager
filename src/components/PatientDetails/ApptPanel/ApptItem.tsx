@@ -1,14 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// Context
+// Context and Models
 import { AppContext } from "../../../persistence/context";
+import Appointments from './../../../models/appointments/ApptModel';
 
 // Firebase
 import { DocumentData } from 'firebase/firestore';
 
-// MUI imports
-import { IconButton, Menu, MenuItem, Box, Typography } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+// MUI
+import { IconButton, Box, Typography } from '@mui/material';
+import { mdiEyeArrowRight } from '@mdi/js';
+import { Icon } from '@mdi/react';
 
 type Props = {
     apptData: DocumentData;
@@ -17,15 +20,7 @@ type Props = {
 function ApptItem({ apptData }: Props) {
     
     const { defaultDoctor } = React.useContext(AppContext);
-   
-    // Icon menu handling
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-
-    // Menu icon config
-    const options = [
-        'Edit Appointment'
-    ];
+    const navigateTo = useNavigate();
 
     // Date management
     const generateMonth = () => {
@@ -44,13 +39,6 @@ function ApptItem({ apptData }: Props) {
         let dayNum = new Date(apptData?.date.seconds * 1000).getDate();
         return `${dayNum}`
     }
-
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', background: '#F5F5F5', p: '16px', borderRadius: '8px' }}>
@@ -71,39 +59,19 @@ function ApptItem({ apptData }: Props) {
                 </Box>
                 <Box sx={{ position: 'absolute', right: 0 }}>
                     <IconButton
-                        aria-label="more"
-                        id="long-button"
-                        aria-controls={open ? 'long-menu' : undefined}
-                        aria-expanded={open ? 'true' : undefined}
                         aria-haspopup="true"
-                        onClick={handleClick}
+                        onClick={() => navigateTo('../appointments')}
                     >
-                        <MoreVertIcon />
+                        <Icon path={mdiEyeArrowRight} size={1} />
                     </IconButton>
-                    <Menu
-                        id="long-menu"
-                        MenuListProps={{
-                            'aria-labelledby': 'long-button',
-                        }}
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                    >
-                        {options.map((option) => (
-                            <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </Menu>
                 </Box>
-
             </Box>
-            <Box sx={{ display: 'flex', marginTop: '10px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
                 <Typography sx={{ color: '#C0C0C0', fontSize: '11px', marginRight: '62px' }}>
                     {apptData?.time}
                 </Typography>
                 <Box sx={{ display: 'flex', gap: '8px' }}>
-                    <Typography sx={{ color: '#C0C0C0', fontSize: '11px' }}> Doctor </Typography>
+                    <Typography sx={{ color: '#C0C0C0', fontSize: '12px' }}> Doctor : </Typography>
                     <Typography sx={{ color: '#C0C0C0', fontSize: '12px', fontWeight: 500 }}>
                         {defaultDoctor.name}
                     </Typography>

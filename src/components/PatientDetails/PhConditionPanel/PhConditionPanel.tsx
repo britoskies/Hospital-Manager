@@ -1,13 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-// Components and Views imports
+// Components and utils
 import PhConditionItem from './PhConditionItem';
+import { formatDate } from '../../../utils/formatDate';
+
+// Model
 import Patients from '../../../models/patient/PatientModel';
 
-// Mui imports
+// Mui
 import { Paper, Typography, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PhConditionDialog from './PhConditionDialog';
 
 type Props = {};
 
@@ -16,25 +20,30 @@ function PhConditionPanel({ }: Props) {
     const { id } = useParams();
     const [phCondition] = Patients.findById(`${id}`);
 
-    // Menu icon config
-    const options = [
-        'Edit date',
-        'Edit symptoms',
-        'Edit diagnosis',
-        'Edit diagnosis description',
-    ];
+    const date = phCondition?.data()?.physical_condition?.date;
+    const formatedDate = formatDate(new Date(date?.seconds * 1000));
+    const blood = phCondition?.data()?.physical_condition?.blood_pressure;
+    const sugar = phCondition?.data()?.physical_condition?.sugar_level;
+    const cholesterol = phCondition?.data()?.physical_condition?.cholesterol;
 
-    const ITEM_HEIGHT = 48;
+    const [dateState, setDate] = React.useState<string>(formatedDate);
+    const [bloodState, setBlood] = React.useState<string>(blood);
+    const [sugarState, setSugar] = React.useState<string>(sugar);
+    const [cholesterolState, setCholesterol] = React.useState<string>(cholesterol);
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+    const [open, setOpen] = React.useState<boolean>(false);
+
+    const handleClickOpen = () => {
+        setDate(formatedDate);
+        setBlood(blood);
+        setSugar(sugar);
+        setCholesterol(cholesterol);
+        setOpen(true);
     };
+
     const handleClose = () => {
-        setAnchorEl(null);
+        setOpen(false);
     };
-
 
     return (
         <Paper elevation={0} sx={{
@@ -54,42 +63,30 @@ function PhConditionPanel({ }: Props) {
                 Physical Condition
 
                 <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? 'long-menu' : undefined}
-                    aria-expanded={open ? 'true' : undefined}
+                    id="moreverticon"
                     aria-haspopup="true"
-                    onClick={handleClick}
+                    onClick={handleClickOpen}
                 >
                     <MoreVertIcon />
                 </IconButton>
-                <Menu
-                    id="long-menu"
-                    MenuListProps={{
-                        'aria-labelledby': 'long-button',
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    PaperProps={{
-                        style: {
-                            maxHeight: ITEM_HEIGHT * 4.5,
-                            width: '20ch',
-                        },
-                    }}
-                >
-                    {options.map((option) => (
-                        <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                            {option}
-                        </MenuItem>
-                    ))}
-                </Menu>
             </Typography>
             <PhConditionItem
-                date={new Date(phCondition?.data()?.physical_condition?.date).toLocaleDateString()}
-                blood={phCondition?.data()?.physical_condition?.blood_pressure}
-                sugar={phCondition?.data()?.physical_condition?.sugar_level}
-                cholesterol={phCondition?.data()?.physical_condition?.cholesterol}
+                date={new Date(formatedDate).toLocaleDateString()}
+                blood={blood}
+                sugar={sugar}
+                cholesterol={cholesterol}
+            />
+            <PhConditionDialog
+                open={open}
+                onClose={handleClose}
+                date={dateState}
+                blood={bloodState}
+                sugar={sugarState}
+                cholesterol={cholesterolState}
+                setDate={setDate}
+                setBlood={setBlood}
+                setSugar={setSugar}
+                setCholesterol={setCholesterol}
             />
         </Paper>
     )

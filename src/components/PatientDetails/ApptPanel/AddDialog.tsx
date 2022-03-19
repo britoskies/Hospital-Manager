@@ -8,6 +8,7 @@ import Appointments from "../../../models/appointments/ApptModel";
 
 // Persistence
 import { AppContext } from "../../../persistence/context";
+import { formatDateWithNums } from "../../../utils/formatDate";
 
 // Material imports
 import {
@@ -80,6 +81,7 @@ function AddDialog({ onClose, open }: Props) {
             label="Date"
             type="date"
             defaultValue={date}
+            InputProps={{ inputProps: { min: formatDateWithNums(new Date()) } }}
             onChange={(e) => setDate(e.target.value)}
             InputLabelProps={{
               shrink: true,

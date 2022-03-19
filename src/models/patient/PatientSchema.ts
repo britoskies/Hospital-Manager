@@ -1,7 +1,7 @@
 import { Timestamp } from 'firebase/firestore'
 
 interface iPhysicalCondition { 
-    date: string
+    date: Timestamp
     blood_pressure: string
     sugar_level: string
     cholesterol: string
@@ -11,8 +11,8 @@ export interface iPatient {
     name: string
     email: string
     address: string
-    social_number: number
-    phone_number: number
+    social_number: string
+    phone_number: string
     born_date: Timestamp
     gender: string
     active_status: boolean
@@ -24,8 +24,8 @@ export interface iOptionalPatient {
     name?: string
     email?: string
     address?: string
-    social_number?: number
-    phone_number?: number
+    social_number?: string
+    phone_number?: string
     born_date?: Timestamp
     gender?: string
     active_status?: boolean
