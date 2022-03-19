@@ -14,6 +14,7 @@ import {
   FormControl,
   TextField,
 } from "@mui/material";
+import { formatDateWithNums } from "../../../utils/formatDate";
 
 type Props = {
   open: boolean;
@@ -73,6 +74,7 @@ function PhConditionDialog({
               label="New evaluation date"
               variant="outlined"
               type="date"
+              InputProps={{ inputProps: { max: formatDateWithNums(new Date()) } }}
               defaultValue={date}
               onChange={(e) => setDate(e.target.value)}
               InputLabelProps={{ shrink: true }}

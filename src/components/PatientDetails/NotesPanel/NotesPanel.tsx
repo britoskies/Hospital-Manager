@@ -46,7 +46,7 @@ function NotesPanel({ notes }: Props) {
                         <EditIcon sx={{ fontSize: 20 }} />
                     </IconButton>
                 </Typography>
-                <Typography sx={{ color: '#333', fontWeight: 400, fontSize: '14px', marginTop: '20px' }}>
+                <Typography sx={{overflowWrap: 'break-word', color: '#333', fontWeight: 400, fontSize: '14px', marginTop: '20px' }}>
                     {(notes) ? notes : 'There are no records on this patient\'s documents'}
                 </Typography>
             </Paper>

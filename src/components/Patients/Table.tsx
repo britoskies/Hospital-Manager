@@ -111,7 +111,7 @@ export default function DataTable({ searchTerm }: Props) {
       },
       '& .patients-table-header': {
         bgcolor: 'white',
-        px: 4,
+        px: 3,
       },
       '& .patients-table-row': {
         cursor: 'pointer',

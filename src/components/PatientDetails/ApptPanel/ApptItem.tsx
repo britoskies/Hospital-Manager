@@ -50,7 +50,7 @@ function ApptItem({ apptData }: Props) {
                     <Typography sx={{ color: '#C0C0C0', fontSize: '11px' }}> Treatment </Typography>
                     <Typography sx={{ color: '#333', fontWeight: 900, fontSize: '17px' }}>
                         {
-                            apptData?.treatment.length > 30
+                            apptData?.treatment.length > 40
                                 ? apptData?.treatment.substring(0, 30) + "..."
                                 : apptData?.treatment
                         }
