@@ -1,14 +1,53 @@
 # HMS-Starter
 Hospital Management System. Starter Pack, for a Single Doctor
 
-### Features
+### Dashboard View
+
+![dashboard](/src/assets/img/dashboard.png);
+
+### Login View
+
+![login](/src/assets/img/signin.png);
+
+### Patients View
+
+![patients](/src/assets/img/patients.png);
+
+### Patient Details View
+
+![patient-details](/src/assets/img/patientdetails.png);
+
+### Appointments View
+
+![appointments](/src/assets/img/appointments.png);
+
+
+### Overview
 
 This pack includes the following modules:
   - Manage appointments.
   - Manage patients personal information and status of application.
-  - Receive current information of the system immediately.
-  - System itself leaves no room for error.
-  - Usage effiency on point, keeping everything simple.
+  - Automatic database updates.
+  - Error handling.
+  - Usage effiency.
+
+### Features
+
+- Login view, including "hide password" option
+- Appointments filtering by date
+- Add/Update new patients
+- Add new appointments
+- Search bar for each table
+- Update patient information
+- Logout option
+
+### Development
+
+- React (with Typescript)
+- Firebase <b> 9.1 </b>
+- Material UI kit 
+- Vite <b> 2.8 </b>
+- VSCode
 
 ### Note
 
