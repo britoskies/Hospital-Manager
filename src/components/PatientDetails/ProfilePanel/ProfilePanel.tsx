@@ -1,12 +1,9 @@
 import React from 'react';
 
 // Material imports
-import { Avatar, IconButton, Menu, MenuItem, Paper, Typography, Box } from '@mui/material';
+import { Avatar, IconButton, Paper, Typography, Box } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-// Prop types imports
-import { DocumentData } from 'firebase/firestore';
-import { iAppointments } from '../../../models/appointments/ApptSchema';
+import ProfileDialog from './ProfileDialog';
 
 type Props = {
     name: string;
@@ -15,7 +12,7 @@ type Props = {
 };
 
 function ProfilePanel({ name, time, nextAppt }: Props) {
-    
+
     const generateMonth = () => {
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let month = months[new Date(nextAppt)?.getMonth()];
@@ -29,94 +26,64 @@ function ProfilePanel({ name, time, nextAppt }: Props) {
         return `${dayNum}`
     }
 
+    const [open, setOpen] = React.useState<boolean>(false);
 
-    // Menu icon config
-    const options = [
-        'Edit profile name',
-        'Edit next appointment'
-    ];
-
-    const ITEM_HEIGHT = 48;
-
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+    const handleClickOpen = () => {
+        setOpen(true);
     };
+
     const handleClose = () => {
-        setAnchorEl(null);
+        setOpen(false);
     };
 
     return (
-        <Paper elevation={0} sx={{
-            width: 'auto',
-            height: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column',
-            p: '24px',
-            margin: '16px 0px 16px 0px',
-            position: 'relative'
-        }}>
-            <Box sx={{
-                position: 'absolute',
-                zIndex: 10,
-                right: 24,
-                top: 24
+        <>
+            <Paper elevation={0} sx={{
+                width: 'auto',
+                height: 'auto',
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column',
+                p: '24px',
+                margin: '16px 0px 16px 0px',
+                position: 'relative'
             }}>
-                <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? 'long-menu' : undefined}
-                    aria-expanded={open ? 'true' : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                >
-                    <MoreVertIcon />
-                </IconButton>
-                <Menu
-                    id="long-menu"
-                    MenuListProps={{
-                        'aria-labelledby': 'long-button',
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    PaperProps={{
-                        style: {
-                            maxHeight: ITEM_HEIGHT * 4.5,
-                            width: '20ch',
-                        },
-                    }}
-                >
-                    {options.map((option) => (
-                        <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                            {option}
-                        </MenuItem>
-                    ))}
-                </Menu>
-            </Box>
-            <Box>
-                <Avatar
-                    alt={name}
-                    src="/static/images/avatar/1.jpg"
-                    sx={{ width: 100, height: 100, fontSize: '35px' }}
-                />
-            </Box>
-            <Typography component="div" sx={{ color: '#333', fontWeight: 'bold', fontSize: '24px', margin: '15px' }}>
-                {name}
-            </Typography>
-            <Typography sx={{ color: '#C0C0C0', fontSize: '12px' }}>
-                Next Appointment
-            </Typography>
-            <Typography sx={{ color: '#333', fontWeight: 'bold', fontSize: '16px' }}>
-                {
-                    (generateMonth() || generateDayNumber())
-                        ? `${generateMonth()}, ${generateDayNumber()}th ${time}`
-                        : 'N/A'
-                }
-            </Typography>
-        </Paper>
+                <Box sx={{
+                    position: 'absolute',
+                    zIndex: 10,
+                    right: 24,
+                    top: 24
+                }}>
+                    <IconButton
+                        id="long-button"
+                        onClick={handleClickOpen}
+                    >
+                        <MoreVertIcon />
+                    </IconButton>
+                </Box>
+                <Box>
+                    <Avatar
+                        alt={name}
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 100, height: 100, fontSize: '35px' }}
+                    />
+                </Box>
+                <Typography component="div" sx={{ color: '#333', fontWeight: 'bold', fontSize: '24px', margin: '15px' }}>
+                    {name}
+                </Typography>
+                <Typography sx={{ color: '#C0C0C0', fontSize: '12px' }}>
+                    Next Appointment
+                </Typography>
+                <Typography sx={{ color: '#333', fontWeight: 'bold', fontSize: '16px' }}>
+                    {
+                        (generateMonth() || generateDayNumber())
+                            ? `${generateMonth()}, ${generateDayNumber()}th ${time}`
+                            : 'N/A'
+                    }
+                </Typography>
+            </Paper>
+            <ProfileDialog open={open} onClose={handleClose}/>
+        </>
     );
 }
 

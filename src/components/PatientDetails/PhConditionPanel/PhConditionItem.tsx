@@ -13,7 +13,7 @@ function PhConditionItem({ date, blood, sugar, cholesterol }: Props) {
             <Box>
                 <Typography sx={{ color: '#C0C0C0', fontSize: '14px', marginTop: '15px' }}> Evaluation Date </Typography>
                 <Typography sx={{ fontWeight: 900, fontSize: '16px', marginBottom: '10px' }}>
-                    {date}
+                    {new Date(new Date(date).getTime() + 86400000).toLocaleDateString()}
                 </Typography>
             </Box>
             <Box>
