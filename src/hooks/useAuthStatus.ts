@@ -1,7 +1,7 @@
+import app from '../services/firebase/firebase';
 import { getAuth } from 'firebase/auth';
 import { useEffect, useState } from 'react';;
 
-import app from '../services/firebase/firebase';
 
 export const useAuthStatus = () => {
     const auth = getAuth(app)

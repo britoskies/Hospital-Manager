@@ -40,7 +40,7 @@ function SideBar({ }: Props) {
       }}
       className="sidebar">
       <Box sx={{ position: 'relative', height: '48px', width: '24px', mb: '20px' }} className="sidebar-img-container">
-        <img src="/src/assets/img/logo.png" height="40" className="sidebar-img" />
+        <img src="https://i.imgur.com/xW1XsWN.png" height="40" className="sidebar-img" />
       </Box>
       <ul className="sidebar-icon-list">
         <li className="sidebar-icon">

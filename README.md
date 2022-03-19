@@ -1,67 +1,46 @@
-# HMS-Starter
-Hospital Management System. Starter Pack, for a Single Doctor
+# Getting Started with Create React App
 
-### Dashboard View
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![dashboard](/src/assets/img/dashboard.png);
+## Available Scripts
 
-### Login View
+In the project directory, you can run:
 
-![login](/src/assets/img/signin.png);
+### `npm start`
 
-### Patients View
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-![patients](/src/assets/img/patients.png);
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-### Patient Details View
+### `npm test`
 
-![patient-details](/src/assets/img/patientdetails.png);
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Appointments View
+### `npm run build`
 
-![appointments](/src/assets/img/appointments.png);
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### Overview
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-This pack includes the following modules:
-  - Manage appointments.
-  - Manage patients personal information and status of application.
-  - Automatic database updates.
-  - Error handling.
-  - Usage effiency.
+### `npm run eject`
 
-### Features
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-- Login view, including "hide password" option
-- Appointments filtering by date
-- Add/Update new patients
-- Add new appointments
-- Search bar for each table
-- Update patient information
-- Logout option
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Development
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- React (with Typescript)
-- Firebase <b> 9.1 </b>
-- Material UI kit 
-- Vite <b> 2.8 </b>
-- VSCode
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### Note
+## Learn More
 
-This repo uses [ViteJS](https://vitejs.dev/). for ease the development
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### Installation
-
-First, you have to clone this repo:
-```
-git clone https://github.com/CidCodeRD/HMS-Starter
-```
-
-After cloning the repo, you can install it and run it using:
-```
-npm i
-npx vite
-```
+To learn React, check out the [React documentation](https://reactjs.org/).
