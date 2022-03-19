@@ -1,26 +1,30 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
-// MUI imports
+// Mui
 import { Avatar, Box, Typography } from '@mui/material';
 
 // App context
 import { AppContext } from '../../../persistence/context';
 import Patients from '../../../models/patient/PatientModel';
 
+// Firebase
+import { DocumentData } from 'firebase/firestore';
+
 type Props = {
-    patientId: string
+    patientId: string;
+    apptData: DocumentData;
 };
 
-function ApptItem({ patientId }: Props) {
+function ApptItem({ patientId, apptData }: Props) {
 
     const { defaultDoctor } = useContext(AppContext)
 
-    const [patient, ptLoading, ptError] = Patients.findById(`${patientId}`);
+    const [patient] = Patients.findById(`${patientId}`);
 
     return (
         <Box sx={{ background: '#F5F5F5', p: '20px', borderRadius: '10px' }}>
             <Typography sx={{ fontSize: '12px', fontWeight: 500, marginBottom: '10px' }}>
-                {'8:00 am to 8:30 am'}
+                {`Scheduled at ${apptData?.time}`}
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'start' }}>
                 <Avatar

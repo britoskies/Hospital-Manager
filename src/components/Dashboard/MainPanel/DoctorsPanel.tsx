@@ -3,7 +3,7 @@ import React from 'react';
 // App context
 import { AppContext } from "../../../persistence/context";
 
-// Mui imports
+// Mui
 import { Avatar, Box, Paper, Typography, IconButton } from '@mui/material';
 import { mdiArrowRightBoldCircle, mdiArrowLeftBoldCircle } from '@mdi/js';
 import { Icon } from '@mdi/react';
@@ -19,18 +19,15 @@ function DoctorsPanel({ }: Props) {
             <Typography sx={{ color: '#333', fontWeight: 700, fontSize: '18px' }}>
                 Doctors
             </Typography>
-
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 overflowX: 'auto'
             }}>
-
                 <IconButton>
                     <Icon path={mdiArrowLeftBoldCircle} size={1.7} color={"#4A5D79"} />
                 </IconButton>
-
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',

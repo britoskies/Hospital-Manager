@@ -1,4 +1,3 @@
-// React Imports
 import React from "react";
 import { useParams } from "react-router-dom";
 
@@ -10,7 +9,7 @@ import Appointments from "../../../models/appointments/ApptModel";
 import { AppContext } from "../../../persistence/context";
 import { formatDateWithNums } from "../../../utils/formatDate";
 
-// Material imports
+// Mui
 import {
   Button,
   Dialog,
@@ -70,7 +69,7 @@ function AddDialog({ onClose, open }: Props) {
     };
     await Appointments.create(newAppt);
   };
-  
+
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
       <DialogTitle>Add New Appointment</DialogTitle>

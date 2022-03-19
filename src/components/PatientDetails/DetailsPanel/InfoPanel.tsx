@@ -24,7 +24,7 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
 
     let { id } = useParams();
     const [patients] = Patients.findById(`${id}`);
-    
+
     const patientDoB = patients?.data()?.born_date;
     const formatedDoB = formatDate(new Date(patientDoB?.seconds * 1000));
     const patientSsn = patients?.data()?.social_number;
@@ -37,7 +37,7 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
     const [addressState, setAddress] = React.useState<string>(patientAddress);
     const [phoneState, setPhone] = React.useState<string>(patientPhone);
     const [genderState, setGender] = React.useState<string>(patientGender);
-    
+
     const [open, setOpen] = React.useState<boolean>(false);
 
     const handleClickOpen = () => {
@@ -53,7 +53,7 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
         setOpen(false);
     };
 
-    return ( 
+    return (
         <>
             <Paper elevation={0} sx={{
                 width: 'auto',
@@ -73,7 +73,6 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
                         <MoreVertIcon />
                     </IconButton>
                 </Typography>
-
                 <Box className='info-container' sx={{ marginTop: '15px', display: 'flex', gap: '33px' }}>
                     <Box className='left-container'>
                         <Box sx={{ marginBottom: '10px' }}>
@@ -89,7 +88,6 @@ function InfoPanel({ bornDate, ssn, address, phoneNumber, gender }: Props) {
                             <Typography sx={{ fontWeight: 900, fontSize: '16px' }}> {address} </Typography>
                         </Box>
                     </Box>
-
                     <Box className='right-container'>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ color: '#C0C0C0', fontSize: '14px' }}> Phone </Typography>

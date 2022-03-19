@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom';
 
 // Components and utils
 import PhConditionItem from './PhConditionItem';
+import PhConditionDialog from './PhConditionDialog';
 import { formatDate } from '../../../utils/formatDate';
 
 // Model
 import Patients from '../../../models/patient/PatientModel';
 
 // Mui
-import { Paper, Typography, IconButton, Menu, MenuItem } from '@mui/material';
+import { Paper, Typography, IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import PhConditionDialog from './PhConditionDialog';
 
 type Props = {};
 
@@ -61,7 +61,6 @@ function PhConditionPanel({ }: Props) {
                 fontSize: '20px'
             }}>
                 Physical Condition
-
                 <IconButton
                     id="moreverticon"
                     aria-haspopup="true"

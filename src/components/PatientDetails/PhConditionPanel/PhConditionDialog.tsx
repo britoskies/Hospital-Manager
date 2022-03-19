@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // Patients models
 import Patients from '../../../models/patient/PatientModel';
 
-// Material imports
+// Mui
 import {
   Button,
   Dialog,
@@ -23,9 +23,9 @@ type Props = {
   sugar: string
   cholesterol: string
   setDate: React.Dispatch<React.SetStateAction<string>>
-  setBlood: React.Dispatch < React.SetStateAction<string>>
-  setSugar: React.Dispatch < React.SetStateAction<string>>
-  setCholesterol: React.Dispatch < React.SetStateAction<string>>
+  setBlood: React.Dispatch<React.SetStateAction<string>>
+  setSugar: React.Dispatch<React.SetStateAction<string>>
+  setCholesterol: React.Dispatch<React.SetStateAction<string>>
 };
 
 function PhConditionDialog({
@@ -43,7 +43,7 @@ function PhConditionDialog({
   }
 
   const handleAccept = () => {
-    if (date || blood || sugar || cholesterol ) {
+    if (date || blood || sugar || cholesterol) {
       save();
       return handleClose();
     }

@@ -1,16 +1,14 @@
-//React Imports
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 
 // Patients models
 import Patients from "../../models/patient/PatientModel";
 
-// Material imports
+// Mui
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   FormControl,
   FormLabel,
@@ -24,7 +22,6 @@ import {
 } from "@mui/material";
 
 import { Timestamp } from "firebase/firestore";
-import { Label } from "@mui/icons-material";
 
 type Props = {
   open: boolean;
@@ -84,7 +81,6 @@ function AddDialog({ onClose, open }: Props) {
       born_date: new Timestamp(newpatientBornDate, 0),
       gender: gender,
       active_status: active,
-      diagnoses: []
     };
 
     await Patients.create(newpatient);
@@ -180,15 +176,15 @@ function AddDialog({ onClose, open }: Props) {
         <FormGroup>
           <FormLabel>Active Status</FormLabel>
           <FormControlLabel
-            sx={{ mb: 3}} 
-            control={<Switch checked={active} onChange={(e) => setActive(e.target.checked)} />} 
-            label={active ? "Active" : "Inactive"} 
+            sx={{ mb: 3 }}
+            control={<Switch checked={active} onChange={(e) => setActive(e.target.checked)} />}
+            label={active ? "Active" : "Inactive"}
           />
         </FormGroup>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel}>Cancel</Button>
-        <Button 
+        <Button
           onClick={handleAccept}
           disabled={!(
             bornDate &&

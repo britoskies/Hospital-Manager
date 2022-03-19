@@ -29,11 +29,11 @@ const Appointments = {
             doc(this.db, 'appointments', apptId)
         );
     },
-    
-    findByPatientId(patientId: string) { 
+
+    findByPatientId(patientId: string) {
         return useCollection<DocumentData | iAppointments>(
             query(collection(this.db, "appointments"), where("patient_id", "==", patientId))
-        );     
+        );
     },
 
     async deleteById(apptId: string) {

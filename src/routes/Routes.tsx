@@ -1,11 +1,9 @@
-// React imports
-import React from "react";
-
-// Router imports
-import { Routes as RTS, Route, Navigate, Outlet } from "react-router-dom";
+// Router
+import { Routes as RTS, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
-// Components Imports
+// Components
+import { LoggedLayout, LoginLayout } from "../views/layouts";
 import {
     DashboardView,
     PatientsView,
@@ -13,11 +11,10 @@ import {
     AppointmentsView,
     SignInView,
 } from "../views";
-import { LoggedLayout, LoginLayout } from "../views/layouts";
 
 type Props = {};
 
-function Routes({}: Props) {
+function Routes({ }: Props) {
     return (
         <RTS>
             <Route element={<ProtectedRoute />}>

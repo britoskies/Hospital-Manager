@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 // Context and Models
 import { AppContext } from "../../../persistence/context";
-import Appointments from './../../../models/appointments/ApptModel';
 
 // Firebase
 import { DocumentData } from 'firebase/firestore';
 
-// MUI
+// Mui
 import { IconButton, Box, Typography } from '@mui/material';
 import { mdiEyeArrowRight } from '@mdi/js';
 import { Icon } from '@mdi/react';

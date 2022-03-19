@@ -1,21 +1,19 @@
 import React from 'react';
 
-// Components imports
+// Components
 import ApptItemsList from './ApptItemsList'
 import AddDialog from './AddDialog';
 
-// MUI imports
+// Mui
 import { Box, Typography, Paper, styled } from '@mui/material';
+import { Icon } from "@mdi/react";
+import { mdiCalendarMonth, mdiClockTimeFour } from '@mdi/js';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 
-// MUI icons imports
-import { Icon } from "@mdi/react";
-import { mdiCalendarMonth, mdiClockTimeFour } from '@mdi/js';
-
-// Firebase and models imports
+// Firebase and models
 import { DocumentData } from 'firebase/firestore';
 import { iAppointments } from '../../../models/appointments/ApptSchema';
 
@@ -38,7 +36,6 @@ function ApptPanel({ pastAppts, dueAppts }: Props) {
     };
 
     // Styles
-
     const Tab = styled(TabUnstyled)`
         color: white;
         cursor: pointer;

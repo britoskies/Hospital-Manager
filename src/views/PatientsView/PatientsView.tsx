@@ -1,22 +1,21 @@
 // React imports
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-// Mui Components
-import { 
+// Components
+import AddDialog from '../../components/Patients/AddDialog';
+import Table from '../../components/Patients/Table';
+import { ViewTitle } from '../../components';
+
+// Mui
+import {
   Button,
   Box,
   Typography
 } from '@mui/material';
 
-// Patients Components
-import AddDialog from '../../components/Patients/AddDialog';
-import Table from '../../components/Patients/Table';
-import { ViewTitle } from '../../components';
-
-
 type Props = {};
 
-function PatientsView({}: Props) {
+function PatientsView({ }: Props) {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -33,17 +32,17 @@ function PatientsView({}: Props) {
   };
 
   return (
-    <Box className="patients-view" sx={{width: "100%"}}>
-        <Box 
-          sx={{ display: 'flex', justifyContent: 'end',}}>
+    <Box className="patients-view" sx={{ width: "100%" }}>
+      <Box
+        sx={{ display: 'flex', justifyContent: 'end', }}>
         <Button variant="contained" onClick={handleClickOpen} sx={{ mb: 3 }}>
           <Typography sx={{ fontSize: '15px', fontWeight: 'bold', mr: 1 }}> + </Typography>
           Add Patient
         </Button>
-        </Box>
-        <AddDialog open={open} onClose={handleClose}/>
-        <ViewTitle title="Patients" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm}/>
-        <Table searchTerm={searchTerm} />
+      </Box>
+      <AddDialog open={open} onClose={handleClose} />
+      <ViewTitle title="Patients" withSearchBar searchTerm={searchTerm} setSearchTerm={handleSearchTerm} />
+      <Table searchTerm={searchTerm} />
     </Box>
   );
 }

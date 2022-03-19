@@ -1,3 +1,8 @@
 import { createContext } from "react";
 
-export const AppContext = createContext({defaultDoctor: { name: "Sasha Hill", id: "40NlIuRASffNoTUU9qdm"}});
+export const AppContext = createContext({
+    defaultDoctor: {
+        name: "Ronald Brito",
+        id: "40NlIuRASffNoTUU9qdm"
+    }
+});

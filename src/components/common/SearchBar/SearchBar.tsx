@@ -1,9 +1,6 @@
-import React from 'react';
-
+// Mui
 import { alpha, InputBase, styled } from "@mui/material"
-
 import { Search as SearchIcon } from '@mui/icons-material'
-import { useSearchParams } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,7 +50,7 @@ type Props = {
   setSearchTerm: ((e: any) => void)
 };
 
-function SearchBar({searchTerm, setSearchTerm}: Props) {
+function SearchBar({ searchTerm, setSearchTerm }: Props) {
   return (
     <Search>
       <SearchIconWrapper>

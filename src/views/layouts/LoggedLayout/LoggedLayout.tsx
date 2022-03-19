@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Router imports
 import { Outlet } from 'react-router';
 
@@ -9,24 +7,19 @@ import { Header, SideBar } from '../../../components';
 // Mui components
 import { Box } from '@mui/material'
 
-// Firebase imports
-import UserAuth from '../../../models/userauth/UserAuth';
-
 type Props = {};
 
 function LoggedLayout({ }: Props) {
 
   return (
-    <Box sx={{display: 'flex', flexDirection: 'row'}} className="layout logged-layout">
-
-          <SideBar />
-
-        <Box sx={{flex: 1, mr: 3}}>
-          <Header />
-          <Box sx={{display: 'flex', width: "100%", py: 3}}>
-            <Outlet />
-          </Box>
+    <Box sx={{ display: 'flex', flexDirection: 'row' }} className="layout logged-layout">
+      <SideBar />
+      <Box sx={{ flex: 1, mr: 3 }}>
+        <Header />
+        <Box sx={{ display: 'flex', width: "100%", py: 3 }}>
+          <Outlet />
         </Box>
+      </Box>
     </Box>
   );
 }

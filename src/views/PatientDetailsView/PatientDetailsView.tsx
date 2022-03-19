@@ -1,7 +1,6 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 
-// Components imports
+// Components
 import ProfilePanel from '../../components/PatientDetails/ProfilePanel/ProfilePanel';
 import InfoPanel from '../../components/PatientDetails/DetailsPanel/InfoPanel';
 import NotesPanel from '../../components/PatientDetails/NotesPanel/NotesPanel';
@@ -9,11 +8,11 @@ import PhConditionPanel from '../../components/PatientDetails/PhConditionPanel/P
 import ViewTitle from './../../components/common/ViewTitle/ViewTitle';
 import ApptPanel from '../../components/PatientDetails/ApptPanel/ApptPanel';
 
-// Model imports
+// Model
 import Patients from './../../models/patient/PatientModel';
 import Appointments from '../../models/appointments/ApptModel';
 
-// MUI imports
+// Mui
 import { Box, Grid } from '@mui/material';
 
 type Props = {};
@@ -61,7 +60,7 @@ function PatientDetailsView({ }: Props) {
           <ApptPanel pastAppts={pastAppts} dueAppts={dueAppts} />
         </Grid>
         <Grid xs={3.5} paddingLeft={2} paddingTop={3}>
-          <PhConditionPanel/>
+          <PhConditionPanel />
           <NotesPanel notes={notes} />
         </Grid>
       </Grid>

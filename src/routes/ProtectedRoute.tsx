@@ -1,12 +1,9 @@
-import React from 'react'
+import { Outlet, Navigate } from 'react-router-dom';
 
 import { useAuthStatus } from "../hooks";
 
-import { CircularProgress } from "@mui/material";
-
 import { Spinner } from '../components'
 
-import { Outlet, Navigate } from 'react-router-dom';
 
 function ProtectedRoute() {
     // a custom hook to keep track of user's auth status

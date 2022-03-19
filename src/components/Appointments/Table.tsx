@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
 
-// Mui imports
+// Mui
 import { Paper } from '@mui/material'
-import { DataGrid, GridColDef, GridSelectionModel, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
 
 // Context
 import { AppContext } from '../../persistence/context';
@@ -11,7 +10,7 @@ import { AppContext } from '../../persistence/context';
 // Components
 import { Spinner } from '../common';
 
-// Model
+// Models
 import Patients from '../../models/patient/PatientModel';
 import Appointments from '../../models/appointments/ApptModel';
 
@@ -44,7 +43,8 @@ export default function DataTable({ searchTerm }: Props) {
   useEffect(() => {
     if (appointments && appointments) {
       let tmprows: any[] = []
-
+      
+      // To display all fields in table
       appointments.docs.map(doc => {
         tmprows.push({
           id: doc.id,
@@ -118,7 +118,6 @@ export default function DataTable({ searchTerm }: Props) {
         }}
         getRowClassName={(params) => `appointments-table-row appointments-table-row--${(filteredRows.findIndex(row => row.id == params.id)) % 2}`}
         selectionModel={selectionModel}
-        //checkboxSelection
         disableSelectionOnClick
         className="appointments-table"
       />

@@ -1,17 +1,15 @@
-//React Imports
 import React, { useContext, useState } from "react";
 
 // Model
 import PatientModel from "../../models/patient/PatientModel";
 import Appointments from "../../models/appointments/ApptModel";
 
-// MUI
+// Mui
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   FormControl,
   InputLabel,
@@ -32,7 +30,7 @@ type Props = {
 function AddDialog({ onClose, open }: Props) {
 
   const { defaultDoctor } = useContext(AppContext);
-  
+
   const [date, setDate] = useState(new Date().toLocaleDateString('sv-SE'));
   const [time, setTime] = useState<string>('12:00');
   const [doctorId, setDoctorId] = useState(defaultDoctor.id);
@@ -141,7 +139,7 @@ function AddDialog({ onClose, open }: Props) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel}>Cancel</Button>
-        <Button 
+        <Button
           onClick={handleAccept}
           disabled={!(date && time && doctorId && patientId && treatment)}
         >

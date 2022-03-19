@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // Patients models
 import Patients from './../../../models/patient/PatientModel';
 
-// Material imports
+// Mui
 import {
   Button,
   Dialog,

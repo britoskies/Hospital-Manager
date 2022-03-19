@@ -1,9 +1,12 @@
 import React from 'react';
 
-// Material imports
+// Components
+import ProfileDialog from './ProfileDialog';
+
+// Mui
 import { Avatar, IconButton, Paper, Typography, Box } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ProfileDialog from './ProfileDialog';
+
 
 type Props = {
     name: string;

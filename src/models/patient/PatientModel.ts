@@ -12,19 +12,17 @@ import {
     updateDoc
 } from "firebase/firestore";
 
-
-
 const Patients = {
 
     db: getFirestore(app),
-        
-    findAll() { 
+
+    findAll() {
         return useCollection<DocumentData | iPatient>(
             query(collection(this.db, 'patients'))
         );
     },
 
-    findById(patientId: string) { 
+    findById(patientId: string) {
         return useDocument<DocumentData | iPatient>(
             doc(this.db, 'patients', patientId)
         );
@@ -34,12 +32,11 @@ const Patients = {
         await deleteDoc(doc(this.db, 'patients', patientId));
     },
 
-    async updateById(patientId: string, data: Object | iOptionalPatient) { 
+    async updateById(patientId: string, data: Object | iOptionalPatient) {
         await updateDoc(doc(this.db, 'patients', patientId), data);
     },
 
-    async create(data: Object | iPatient) { 
-
+    async create(data: Object | iPatient) {
         function instanceOfPatient(object: any): object is iPatient {
             return (
                 'name' in object &&
@@ -59,7 +56,7 @@ const Patients = {
             alert("Cannot leave empty fields");
             return;
         }
-        
+
         await addDoc(collection(this.db, 'patients'), data);
     }
 }
