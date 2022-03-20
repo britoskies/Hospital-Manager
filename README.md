@@ -3,7 +3,6 @@ Hospital Management System. Starter Pack, for a Single Doctor
 https://hospital-manager.vercel.app/
 
 ## Login Credentials
-
 ##### GMAIL
 ```
 test@gmail.com
@@ -15,23 +14,23 @@ test@gmail.com
 
 ### Dashboard View
 
-![dashboard](/src/assets/img/dashboard.png);
+![dashboard](/src/assets/img/dashboard.png)
 
 ### Login View
 
-![login](/src/assets/img/signin.png);
+![login](/src/assets/img/signin.png)
 
 ### Patients View
 
-![patients](/src/assets/img/patients.png);
+![patients](/src/assets/img/patients.png)
 
 ### Patient Details View
 
-![patient-details](/src/assets/img/patientdetails.png);
+![patient-details](/src/assets/img/patientdetails.png)
 
 ### Appointments View
 
-![appointments](/src/assets/img/appointments.png);
+![appointments](/src/assets/img/appointments.png)
 
 
 ### Overview
