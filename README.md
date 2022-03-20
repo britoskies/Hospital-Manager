@@ -1,5 +1,17 @@
 # HMS-Starter
 Hospital Management System. Starter Pack, for a Single Doctor
+https://hospital-manager.vercel.app/
+
+## Login Credentials
+
+##### GMAIL
+```
+test@gmail.com
+```
+##### PASSWORD
+```
+123456
+```
 
 ### Dashboard View
 
@@ -48,10 +60,6 @@ This pack includes the following modules:
 - Material UI kit 
 - Vite <b> 2.8 </b>
 - VSCode
-
-### Note
-
-This repo uses [ViteJS](https://vitejs.dev/). for ease the development
 
 ### Installation
 
