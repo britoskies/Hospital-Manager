@@ -1,8 +1,8 @@
 # HMS-Starter
-Hospital Management System. Starter Pack, for a Single Doctor
-https://hospital-manager.vercel.app/
+Hospital Management System. Starter Pack, for a Single Doctor: https://hospital-manager.vercel.app/
 
-## Login Credentials
+### Login Credentials
+
 ##### GMAIL
 ```
 test@gmail.com
@@ -12,23 +12,23 @@ test@gmail.com
 123456
 ```
 
-### Dashboard View
+## Dashboard View
 
 ![dashboard](/src/assets/img/dashboard.png)
 
-### Login View
+## Login View
 
 ![login](/src/assets/img/signin.png)
 
-### Patients View
+## Patients View
 
 ![patients](/src/assets/img/patients.png)
 
-### Patient Details View
+## Patient Details View
 
 ![patient-details](/src/assets/img/patientdetails.png)
 
-### Appointments View
+## Appointments View
 
 ![appointments](/src/assets/img/appointments.png)
 
