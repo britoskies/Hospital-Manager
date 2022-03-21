@@ -55,20 +55,20 @@ This pack includes the following modules:
 ### Development
 
 - React (with Typescript)
-- Firebase <b> 9.1 </b>
+- Firebase <b> 9.6 </b>
 - Material UI kit 
-- Vite <b> 2.8 </b>
+- Create-React-App
 - VSCode
 
 ### Installation
 
 First, you have to clone this repo:
 ```
-git clone https://github.com/CidCodeRD/HMS-Starter
+git clone https://github.com/britoskies/Hospital-Manager
 ```
 
 After cloning the repo, you can install it and run it using:
 ```
 npm i
-npx vite
+npm start
 ```
